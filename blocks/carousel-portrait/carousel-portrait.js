@@ -75,15 +75,8 @@ function createScrollbar(block) {
   }
 
   slidesEl.addEventListener('scroll', updateDrag, { passive: true });
-  // Initial position + fallback for below-fold carousels
-  requestAnimationFrame(updateDrag);
-  function initOnScroll() {
-    if (scrollbar.offsetWidth > 0) {
-      updateDrag();
-      window.removeEventListener('scroll', initOnScroll);
-    }
-  }
-  window.addEventListener('scroll', initOnScroll, { passive: true });
+  // Double-rAF ensures layout is computed before reading offsetWidth
+  requestAnimationFrame(() => requestAnimationFrame(updateDrag));
 }
 
 function bindEvents(block) {
