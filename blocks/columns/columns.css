@@ -1,33 +1,103 @@
+/* columns — Queensland-styled two-column CTA layout */
+
 .columns > div {
   display: flex;
   flex-direction: column;
+  gap: 0;
+  align-items: stretch;
 }
 
 .columns img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
 }
 
+/* Text column */
 .columns > div > div {
   order: 1;
+  padding: 40px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Image column */
 .columns > div > .columns-img-col {
   order: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .columns > div > .columns-img-col img {
   display: block;
 }
 
+/* Heading — override dark section orange from carousel-portrait */
+main .section.columns-container .columns h2,
+main .section.columns-container .columns h1 {
+  font-size: 40px;
+  font-weight: 600;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  line-height: 1;
+  margin: 0 0 20px;
+}
+
+/* Description */
+.columns > div > div p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--text-color);
+  margin: 0 0 18px;
+}
+
+/* CTA button */
+.columns > div > div .button-container {
+  margin: 16px 0 0;
+}
+
+.columns > div > div a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--link-color);
+  color: white;
+  padding: 0 15px;
+  height: 50px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  transition: background-color 0.2s;
+}
+
+.columns > div > div a.button:hover {
+  background-color: var(--link-hover-color);
+}
+
+/* Desktop layout (900px and above) */
 @media (width >= 900px) {
   .columns > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row-reverse;
   }
 
   .columns > div > div {
     flex: 1;
     order: unset;
+    padding: 48px 40px;
+  }
+
+  .columns > div > .columns-img-col {
+    flex: 1;
+    padding: 0;
+    min-height: 540px;
   }
 }

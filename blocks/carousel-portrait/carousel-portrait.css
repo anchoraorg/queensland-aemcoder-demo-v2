@@ -10,7 +10,6 @@ main .section.dark.carousel-portrait-container h2 {
 }
 
 .carousel-portrait-container .carousel-portrait-wrapper {
-  max-width: unset;
   padding: 0 24px;
 }
 
