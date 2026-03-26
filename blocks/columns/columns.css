@@ -1,7 +1,7 @@
 /* columns — Queensland-styled two-column CTA layout */
 
 /* Spacing between columns blocks and adjacent content */
-.columns-wrapper {
+.section > .columns-wrapper {
   margin-top: 80px;
   margin-bottom: 80px;
 }
