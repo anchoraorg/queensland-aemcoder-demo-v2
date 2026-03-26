@@ -75,16 +75,15 @@ function createScrollbar(block) {
   }
 
   slidesEl.addEventListener('scroll', updateDrag, { passive: true });
-  // Initial position — use IntersectionObserver so offsetWidth is reliable
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        updateDrag();
-        observer.disconnect();
-      }
-    });
-  }, { threshold: 0 });
-  observer.observe(scrollbar);
+  // Initial position + fallback for below-fold carousels
+  requestAnimationFrame(updateDrag);
+  function initOnScroll() {
+    if (scrollbar.offsetWidth > 0) {
+      updateDrag();
+      window.removeEventListener('scroll', initOnScroll);
+    }
+  }
+  window.addEventListener('scroll', initOnScroll, { passive: true });
 }
 
 function bindEvents(block) {
