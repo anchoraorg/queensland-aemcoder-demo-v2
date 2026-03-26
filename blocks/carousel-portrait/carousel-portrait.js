@@ -75,8 +75,16 @@ function createScrollbar(block) {
   }
 
   slidesEl.addEventListener('scroll', updateDrag, { passive: true });
-  // Initial position
-  requestAnimationFrame(updateDrag);
+  // Initial position — use IntersectionObserver so offsetWidth is reliable
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        updateDrag();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0 });
+  observer.observe(scrollbar);
 }
 
 function bindEvents(block) {
