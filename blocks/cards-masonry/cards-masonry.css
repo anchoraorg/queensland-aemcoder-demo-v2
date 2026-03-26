@@ -1,25 +1,39 @@
-/* Cards Masonry — Queensland-styled masonry grid with gradient overlays */
+/* Cards Masonry — Queensland-styled masonry grid matching original site */
+
+/* Orange heading preceding the masonry grid */
+.default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
+  color: rgb(255 165 0);
+}
 
 .cards-masonry > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
 }
 
 .cards-masonry > ul > li {
   position: relative;
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
   border: none;
   background: var(--section-dark-bg, #333);
-  min-height: 200px;
+  min-height: 150px;
 }
 
 .cards-masonry > ul > li:first-child {
   grid-row: span 2;
+  grid-column: span 2;
+}
+
+/* Card link wrapper — fills entire tile */
+.cards-masonry .cards-masonry-card-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Card image container */
@@ -38,7 +52,7 @@
   height: 100%;
   object-fit: cover;
   aspect-ratio: 1 / 1;
-  border-radius: 16px;
+  border-radius: 0;
   transition: transform 0.3s;
 }
 
@@ -59,7 +73,7 @@
   right: 0;
   padding: 16px 20px;
   background: linear-gradient(transparent, rgb(0 0 0 / 60%));
-  border-radius: 0 0 16px 16px;
+  border-radius: 0;
 }
 
 .cards-masonry .cards-masonry-card-body h3 {
@@ -67,38 +81,23 @@
   font-size: 20px;
   margin: 0;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
 }
 
-.cards-masonry .cards-masonry-card-body a {
-  color: white;
-  text-decoration: none;
+.cards-masonry > ul > li:first-child .cards-masonry-card-body h3 {
+  font-size: 24px;
 }
 
-.cards-masonry .cards-masonry-card-body p {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: white;
-}
-
+/* Hide duplicate link text — only show h3 title on tile */
+.cards-masonry .cards-masonry-card-body p,
 .cards-masonry .cards-masonry-card-body .button-container {
-  margin: 0;
-}
-
-.cards-masonry .cards-masonry-card-body a.button {
-  background: none;
-  border: none;
-  padding: 0;
-  color: white;
-  font-size: 14px;
-  font-weight: 400;
-  margin: 0;
-  text-align: left;
-  white-space: normal;
+  display: none;
 }
 
 @media (width >= 900px) {
   .cards-masonry > ul {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
   }
 }
