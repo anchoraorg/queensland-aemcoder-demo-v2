@@ -83,6 +83,12 @@
     ]
   },
   {
+    "id": "columns-cta",
+    "components": [
+      "columns-cta-item"
+    ]
+  },
+  {
     "id": "columns",
     "components": [
       "column"
@@ -95,6 +101,18 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "hero-newsletter",
+    "components": [
+      "hero-newsletter-item"
+    ]
+  },
+  {
+    "id": "hero",
+    "components": [
+      "hero-item"
     ]
   },
   {

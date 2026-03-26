@@ -319,7 +319,7 @@
     ]
   },
   {
-    "id": "columns-cta",
+    "id": "columns-cta-item",
     "fields": [
       {
         "component": "reference",
@@ -415,7 +415,7 @@
     ]
   },
   {
-    "id": "hero-newsletter",
+    "id": "hero-newsletter-item",
     "fields": [
       {
         "component": "reference",
@@ -441,7 +441,7 @@
     ]
   },
   {
-    "id": "hero",
+    "id": "hero-item",
     "fields": [
       {
         "component": "reference",
