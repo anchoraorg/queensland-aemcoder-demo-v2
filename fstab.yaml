@@ -1,2 +1,5 @@
 mountpoints:
-  /: https://da.live/source/anchoraorg/queensland-aemcoder-demo
+  /:
+    url: "https://author-p119552-e1919977.adobeaemcloud.com/bin/franklin.delivery/anchoraorg/queensland-aemcoder-demo/main"
+    type: "markup"
+    suffix: ".html"
