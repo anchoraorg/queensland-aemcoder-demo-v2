@@ -78,26 +78,74 @@
 
 .cards-masonry .cards-masonry-card-body h3 {
   color: white;
-  font-size: 20px;
-  margin: 0;
+  font-size: 14px;
+  margin: 4px 0 0;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.6px;
+  line-height: 1.3;
 }
 
 .cards-masonry > ul > li:first-child .cards-masonry-card-body h3 {
-  font-size: 24px;
+  font-size: 18px;
 }
 
-/* Hide duplicate link text — only show h3 title on tile */
+/* Blue category tag */
+.cards-masonry .cards-masonry-card-tag {
+  display: inline-block;
+  background: rgb(0 129 199);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Hide duplicate link text — only show h3 title and tag on tile */
 .cards-masonry .cards-masonry-card-body p,
 .cards-masonry .cards-masonry-card-body .button-container {
   display: none;
 }
 
+/* "explore articles" CTA link below masonry grid */
+.cards-masonry-wrapper .cards-masonry-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.cards-masonry-wrapper .cards-masonry-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0 165 164);
+  border: 2px solid rgb(0 165 164);
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  padding: 5px 24px 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  height: 39px;
+  box-sizing: border-box;
+}
+
+.cards-masonry-wrapper .cards-masonry-cta a:hover {
+  background: rgb(0 165 164);
+  color: white;
+}
+
 @media (width >= 900px) {
   .cards-masonry > ul {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
+  }
+
+  .cards-masonry > ul > li:first-child {
+    grid-row: span 2;
+    grid-column: span 2;
   }
 }

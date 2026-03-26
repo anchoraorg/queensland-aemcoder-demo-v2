@@ -268,8 +268,8 @@ main .section.dark.carousel-portrait-container p {
     pointer-events: none;
     position: absolute;
     top: 50%;
-    left: -40px;
-    right: -40px;
+    left: 0;
+    right: 0;
     transform: translateY(-50%);
     z-index: 5;
   }
