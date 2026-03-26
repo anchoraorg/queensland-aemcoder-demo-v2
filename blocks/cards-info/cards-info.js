@@ -21,6 +21,55 @@ function convertImageLinks(container) {
   });
 }
 
+/**
+ * Restructure temperature paragraphs (Min, °, Max, °) into an inline row.
+ * Original site displays: Min 20° Max 26°
+ * AEM content may have: <p>Min</p><p>°</p><p>Max</p><p>°</p>
+ * or with numbers: <p>Min</p><p>20</p><p>°</p><p>Max</p><p>26</p><p>°</p>
+ */
+function restructureTemperatures(body) {
+  const paragraphs = [...body.querySelectorAll('p')];
+  const minIdx = paragraphs.findIndex((p) => p.textContent.trim() === 'Min');
+  if (minIdx === -1) return;
+
+  // Collect all temperature paragraphs from Min onwards
+  const tempParagraphs = paragraphs.slice(minIdx);
+  const tempRow = document.createElement('div');
+  tempRow.className = 'temp-row';
+
+  let currentLabel = null;
+  let hasNumber = false;
+
+  tempParagraphs.forEach((p) => {
+    const text = p.textContent.trim();
+    if (text === 'Min' || text === 'Max') {
+      const label = document.createElement('span');
+      label.className = 'temp-label';
+      label.textContent = text;
+      tempRow.append(label);
+      currentLabel = text;
+      hasNumber = false;
+    } else if (text === '°') {
+      if (!hasNumber && currentLabel) {
+        // No number was found between label and degree — just show degree
+      }
+      const degree = document.createElement('span');
+      degree.className = 'temp-degree';
+      degree.textContent = '°';
+      tempRow.append(degree);
+    } else if (/^\d+$/.test(text)) {
+      const value = document.createElement('span');
+      value.className = 'temp-value';
+      value.textContent = text;
+      tempRow.append(value);
+      hasNumber = true;
+    }
+    p.remove();
+  });
+
+  body.append(tempRow);
+}
+
 export default function decorate(block) {
   // Fix image links before processing
   convertImageLinks(block);
@@ -31,9 +80,19 @@ export default function decorate(block) {
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && (div.querySelector('picture') || div.querySelector('img'))) div.className = 'cards-info-card-image';
-      else div.className = 'cards-info-card-body';
+      if (div.children.length === 1 && (div.querySelector('picture') || div.querySelector('img'))) {
+        div.className = 'cards-info-card-image';
+      } else {
+        div.className = 'cards-info-card-body';
+      }
     });
+
+    // Restructure temperature display in body divs
+    const body = li.querySelector('.cards-info-card-body');
+    if (body) {
+      restructureTemperatures(body);
+    }
+
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => {

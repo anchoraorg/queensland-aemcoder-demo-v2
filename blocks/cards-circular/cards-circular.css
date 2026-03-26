@@ -13,7 +13,7 @@
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
 }
 
@@ -49,16 +49,16 @@
 /* Icon overlay — positioned above gradient */
 .cards-circular .cards-circular-card-icon {
   position: absolute;
-  bottom: 48px;
+  bottom: 52px;
   left: 20px;
   z-index: 2;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
 }
 
 .cards-circular .cards-circular-card-icon img {
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -77,10 +77,10 @@
 .cards-circular .cards-circular-card-body h3 {
   color: white;
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.6px;
   margin: 0;
 }
 
@@ -115,13 +115,13 @@
   }
 
   .cards-circular .cards-circular-card-icon {
-    bottom: 40px;
-    width: 28px;
-    height: 28px;
+    bottom: 44px;
+    width: 32px;
+    height: 32px;
   }
 
   .cards-circular .cards-circular-card-icon img {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
 }
