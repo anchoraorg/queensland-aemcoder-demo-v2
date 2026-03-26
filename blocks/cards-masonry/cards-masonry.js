@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-// Maps link URLs to article titles and categories for masonry cards
+// Maps link URLs to article titles and categories
 const ARTICLE_CONTENT = {
   'https://www.queensland.com/au/en/places-to-see/destinations/brisbane/brisbane-city/howard-smith-wharves-brisbane': {
     title: "A foodie's guide to the best restaurants and bars at Howard Smith Wharves",
@@ -33,13 +33,16 @@ const ARTICLE_CONTENT = {
   },
 };
 
-// CTA mappings — heading text (lowercase) to CTA config
 const CTA_MAP = {
   'unlock more queensland magic': {
     text: 'explore articles',
     href: 'https://www.queensland.com/au/en/plan-your-holiday/news-and-articles',
   },
 };
+
+/* eslint-disable max-len */
+const HEART_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24.6 22.6"><path fill="none" stroke="#00A5A4" stroke-width="1.5" d="M21.2,12l-8.6,8.7c-.2.2-.5.2-.6,0L3.4,12A6.13,6.13,0,0,1,1.7,7.7,6.31,6.31,0,0,1,3.4,3.4,5.92,5.92,0,0,1,7.7,1.7a6.31,6.31,0,0,1,4.3,1.7,6.31,6.31,0,0,1,4.3-1.7,5.92,5.92,0,0,1,4.3,1.7,6.13,6.13,0,0,1,1.7,4.3A5.88,5.88,0,0,1,21.2,12Z"/></svg>';
+/* eslint-enable max-len */
 
 function injectArticleContent(block) {
   block.querySelectorAll('li').forEach((li) => {
@@ -52,21 +55,38 @@ function injectArticleContent(block) {
     const body = li.querySelector('.cards-masonry-card-body');
     if (!body) return;
 
-    // Skip if already has an h3 (already has title)
+    // Skip if already has an h3
     if (body.querySelector('h3')) return;
 
-    // Inject category tag
+    // Create overlay bar: tag on left, heart on right
+    const overlay = document.createElement('div');
+    overlay.className = 'cards-masonry-card-overlay';
+
     const tag = document.createElement('span');
     tag.className = 'cards-masonry-card-tag';
     tag.textContent = article.category;
-    body.prepend(tag);
 
-    // Inject title
+    const heart = document.createElement('button');
+    heart.className = 'cards-masonry-heart';
+    heart.setAttribute('aria-label', 'Bookmark');
+    heart.innerHTML = HEART_SVG;
+    heart.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      heart.classList.toggle('active');
+    });
+
+    overlay.append(tag);
+    overlay.append(heart);
+
+    // Insert overlay inside the link, before the body
+    link.prepend(overlay);
+
+    // Inject title into body
     const h3 = document.createElement('h3');
     h3.textContent = article.title;
-    tag.after(h3);
+    body.prepend(h3);
 
-    // Update aria-label on the card link
     link.setAttribute('aria-label', article.title);
   });
 }
@@ -98,17 +118,25 @@ export default function decorate(block) {
     moveInstrumentation(row, li);
     while (row.firstElementChild) li.append(row.firstElementChild);
     [...li.children].forEach((div) => {
-      if (div.children.length === 1 && (div.querySelector('picture') || div.querySelector('img'))) div.className = 'cards-masonry-card-image';
-      else div.className = 'cards-masonry-card-body';
+      if (
+        div.children.length === 1
+        && (div.querySelector('picture') || div.querySelector('img'))
+      ) {
+        div.className = 'cards-masonry-card-image';
+      } else {
+        div.className = 'cards-masonry-card-body';
+      }
     });
 
-    // Make entire card a clickable link
     const link = li.querySelector('.cards-masonry-card-body a');
     if (link) {
       const a = document.createElement('a');
       a.href = link.href;
       a.className = 'cards-masonry-card-link';
-      a.setAttribute('aria-label', li.querySelector('h3')?.textContent || '');
+      a.setAttribute(
+        'aria-label',
+        li.querySelector('h3')?.textContent || '',
+      );
       while (li.firstChild) a.append(li.firstChild);
       li.append(a);
     }
@@ -116,7 +144,12 @@ export default function decorate(block) {
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => {
-    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
+    const optimizedPic = createOptimizedPicture(
+      img.src,
+      img.alt,
+      false,
+      [{ width: '750' }],
+    );
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });

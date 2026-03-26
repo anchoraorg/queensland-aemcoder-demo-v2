@@ -1,4 +1,4 @@
-/* Cards Masonry — Queensland-styled masonry grid matching original site */
+/* Cards Masonry — Queensland-styled masonry grid */
 
 /* Orange heading preceding the masonry grid */
 .default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
@@ -16,11 +16,9 @@
 
 .cards-masonry > ul > li {
   position: relative;
-  border-radius: 0;
   overflow: hidden;
-  border: none;
-  background: var(--section-dark-bg, #333);
-  min-height: 150px;
+  background: #333;
+  aspect-ratio: 1 / 1;
 }
 
 .cards-masonry > ul > li:first-child {
@@ -28,15 +26,16 @@
   grid-column: span 2;
 }
 
-/* Card link wrapper — fills entire tile */
+/* Card link — fills entire tile */
 .cards-masonry .cards-masonry-card-link {
   display: block;
   height: 100%;
   text-decoration: none;
   color: inherit;
+  position: relative;
 }
 
-/* Card image container */
+/* Card image */
 .cards-masonry .cards-masonry-card-image {
   line-height: 0;
   height: 100%;
@@ -47,12 +46,16 @@
   height: 100%;
 }
 
+.cards-masonry .cards-masonry-card-image picture {
+  display: block;
+  height: 100%;
+}
+
 .cards-masonry .cards-masonry-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 1 / 1;
-  border-radius: 0;
+  display: block;
   transition: transform 0.3s;
 }
 
@@ -60,54 +63,85 @@
   transform: scale(1.03);
 }
 
-.cards-masonry > ul > li:first-child .cards-masonry-card-image img {
-  aspect-ratio: auto;
-  height: 100%;
+/* Tag + heart overlay bar — positioned top of card */
+.cards-masonry .cards-masonry-card-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  pointer-events: none;
 }
 
-/* Card body overlay with gradient */
+/* Blue category tag */
+.cards-masonry .cards-masonry-card-tag {
+  display: flex;
+  align-items: center;
+  background: rgb(54 90 189);
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.84px;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 18px;
+  pointer-events: auto;
+}
+
+/* Heart bookmark button */
+.cards-masonry .cards-masonry-heart {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  pointer-events: auto;
+}
+
+.cards-masonry .cards-masonry-heart svg path {
+  transition: fill 0.2s;
+}
+
+.cards-masonry .cards-masonry-heart.active svg path {
+  fill: #00a5a4;
+}
+
+/* Card body — text at bottom with gradient */
 .cards-masonry .cards-masonry-card-body {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 16px 20px;
-  background: linear-gradient(transparent, rgb(0 0 0 / 60%));
-  border-radius: 0;
+  padding: 60px 20px 20px;
+  background: linear-gradient(transparent, rgb(0 0 0 / 65%));
+  z-index: 1;
 }
 
 .cards-masonry .cards-masonry-card-body h3 {
   color: white;
-  font-size: 14px;
-  margin: 4px 0 0;
+  font-size: 12px;
   font-weight: 700;
-  line-height: 1.3;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
 .cards-masonry > ul > li:first-child .cards-masonry-card-body h3 {
-  font-size: 18px;
+  font-size: 36px;
+  line-height: 1;
 }
 
-/* Blue category tag */
-.cards-masonry .cards-masonry-card-tag {
-  display: inline-block;
-  background: rgb(0 129 199);
-  color: white;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 3px 8px;
-  border-radius: 2px;
-}
-
-/* Hide duplicate link text — only show h3 title and tag on tile */
+/* Hide link/button text */
 .cards-masonry .cards-masonry-card-body p,
 .cards-masonry .cards-masonry-card-body .button-container {
   display: none;
 }
 
-/* "explore articles" CTA link below masonry grid */
+/* "explore articles" CTA */
 .cards-masonry-wrapper .cards-masonry-cta {
   display: flex;
   justify-content: center;
@@ -138,14 +172,19 @@
   color: white;
 }
 
+/* Desktop: 5-column grid matching original Queensland site */
 @media (width >= 900px) {
   .cards-masonry > ul {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 0;
   }
 
   .cards-masonry > ul > li:first-child {
     grid-row: span 2;
     grid-column: span 2;
+  }
+
+  .cards-masonry > ul > li:first-child .cards-masonry-card-body {
+    padding: 80px 30px 30px;
   }
 }
