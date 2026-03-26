@@ -115,6 +115,41 @@ function bindEvents(block) {
   });
 }
 
+// Fallback images — maps card link URLs to Scene7 image URLs
+// Used when AEM content has empty image columns
+const FALLBACK_IMAGES = {
+  'https://www.queensland.com/au/en/things-to-do/events/arts-and-culture/blueys-world-brisbane': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/blog-images/2023_BNE_BlueysWorld2.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  'https://www.queensland.com/au/en/things-to-do/events/arts-and-culture': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/web-images/2021_BNE_QAGOMA_DLT_JesseSmith_Mobile.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  'https://www.queensland.com/au/en/things-to-do/events/endurance-events': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/events/2024_SC_Ironman_KV_IM703__0263.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  'https://www.queensland.com/au/en/things-to-do/events/food-and-drink': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/tropical-north-queensland/web-images/2019_TNQ_NuNuRestaurant_FoodandBeverage_138678_mobile.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  'https://www.queensland.com/au/en/things-to-do/events/music-and-festivals': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/sunshine-coast/web-images/2014_SSC_CaloundraMusicFestival_Festival_130867_desktop.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  'https://www.queensland.com/au/en/things-to-do/events/sports-events': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/web-images/2020_BNE_BrisbaneInternational_SportEvents_141267_desktop.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+};
+
+function injectFallbackImages(block) {
+  block.querySelectorAll('.carousel-portrait-slide').forEach((slide) => {
+    const imageCol = slide.querySelector('.carousel-portrait-slide-image');
+    if (!imageCol || imageCol.querySelector('picture, img')) return;
+
+    // Image column is empty — check for a matching fallback
+    const link = slide.querySelector('.carousel-portrait-slide-content a');
+    if (!link) return;
+
+    const href = link.href || link.getAttribute('href') || '';
+    const fallbackUrl = FALLBACK_IMAGES[href];
+    if (!fallbackUrl) return;
+
+    // Clear empty wrappers (e.g. <p><!-- field:media_image --></p>)
+    imageCol.innerHTML = '';
+
+    const img = document.createElement('img');
+    img.src = fallbackUrl;
+    img.alt = '';
+    img.loading = 'lazy';
+    imageCol.append(img);
+  });
+}
+
 // CTA button mappings — maps section heading text to CTA link
 const CTA_MAP = {
   'be our plus one?': { text: 'More events', href: 'https://www.queensland.com/au/en/things-to-do/events' },
@@ -217,6 +252,8 @@ export default async function decorate(block) {
 
   container.append(slidesWrapper);
   block.prepend(container);
+
+  injectFallbackImages(block);
 
   if (!isSingleSlide) {
     bindEvents(block);

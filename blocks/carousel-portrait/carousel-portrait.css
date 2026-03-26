@@ -312,3 +312,10 @@ main .section.dark.carousel-portrait-container p {
     margin-right: 4px;
   }
 }
+
+/* Wide desktop — show exactly 4 cards */
+@media (width >= 1200px) {
+  .carousel-portrait .carousel-portrait-slide {
+    flex: 0 0 calc((100% - 90px) / 4);
+  }
+}
