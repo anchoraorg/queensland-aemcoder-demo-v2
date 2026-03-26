@@ -1,5 +1,18 @@
 /* Carousel Portrait — Queensland-styled horizontal scrolling portrait cards */
 
+/* Override dark section styles for roadtrips carousel */
+main .section.dark.carousel-portrait-container {
+  background-color: white;
+}
+
+main .section.dark.carousel-portrait-container h2 {
+  color: #ffa500;
+}
+
+main .section.dark.carousel-portrait-container p {
+  color: var(--text-color);
+}
+
 .carousel-portrait-container .carousel-portrait-wrapper {
   max-width: unset;
   padding: 0 24px;
@@ -35,21 +48,19 @@
 .carousel-portrait .carousel-portrait-slide {
   flex: 0 0 250px;
   scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  border-radius: 12px;
   overflow: hidden;
   position: relative;
-  background: var(--section-dark-bg, #333f48);
+  background: transparent;
+  aspect-ratio: 270 / 480;
 }
 
-/* Portrait card image container */
+/* Portrait card image — fills card absolutely */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-image {
-  border-radius: 12px;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
 
-/* When slide has an image link in content, make it a portrait card with image background */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-image:empty {
   display: none;
 }
@@ -67,30 +78,29 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s;
 }
 
-/* Card content */
+/* Hover — scale the card image */
+.carousel-portrait .carousel-portrait-slide:hover .carousel-portrait-slide-image img {
+  transform: scale(1.05);
+}
+
+/* Card content — overlays at bottom with gradient */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 80px 16px 16px;
+  background: linear-gradient(to top, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 20%) 60%, transparent 100%);
   z-index: 1;
-}
-
-/* When slide-image is empty, content becomes a full card with image */
-.carousel-portrait .carousel-portrait-slide:has(.carousel-portrait-slide-image:empty) {
-  aspect-ratio: 270 / 420;
-}
-
-.carousel-portrait .carousel-portrait-slide:has(.carousel-portrait-slide-image:empty) .carousel-portrait-slide-content {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 100%;
-  padding: 16px;
-  background: none;
-  color: white;
 }
 
-/* Description text in destination slides */
+/* Description text */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p {
   margin: 4px 0;
   font-size: 13px;
@@ -103,12 +113,13 @@
   overflow: hidden;
 }
 
-/* Image link inside content (acts as card background) */
+/* Image link inside content (acts as card background when no slide-image) */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:has(a img) {
   position: absolute;
   inset: 0;
   margin: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:has(a img)::after {
@@ -128,34 +139,50 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* Hover effect — scale image in content too */
+.carousel-portrait .carousel-portrait-slide:hover .carousel-portrait-slide-content p:has(a img) img {
+  transform: scale(1.05);
 }
 
 /* Heading */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content h5,
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content h1 {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 700;
   margin: 4px 0;
   color: white;
   position: relative;
   z-index: 2;
 }
 
-/* CTA link for portrait cards */
-.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:has(a:not(:has(img))) {
-  position: relative;
-  z-index: 2;
+/* CTA link — hidden (card itself is the link) */
+.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content .button-container {
+  font-size: 0;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:has(a:not(:has(img))) a {
-  color: white;
-  font-size: 14px;
+.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content .button-container a.button {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  color: transparent;
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* Label paragraph — small uppercase category label */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:first-of-type {
   font-size: 12px;
   text-transform: uppercase;
-  color: var(--link-color);
+  color: white;
   letter-spacing: 1px;
   margin: 0;
   position: relative;
