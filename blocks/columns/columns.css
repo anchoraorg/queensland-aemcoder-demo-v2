@@ -1,5 +1,11 @@
 /* columns — Queensland-styled two-column CTA layout */
 
+/* Spacing between columns blocks and adjacent content */
+.columns-wrapper {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -111,5 +117,10 @@ main .section.columns-container .columns h1 {
     flex: 1;
     padding: 0;
     min-height: 540px;
+  }
+
+  /* Second columns block: media LEFT, text RIGHT (normal order) */
+  .columns-wrapper + .columns-wrapper .columns > div {
+    flex-direction: row;
   }
 }
