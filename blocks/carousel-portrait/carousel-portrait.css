@@ -9,10 +9,6 @@ main .section.dark.carousel-portrait-container h2 {
   color: #ffa500;
 }
 
-main .section.dark.carousel-portrait-container p {
-  color: var(--text-color);
-}
-
 .carousel-portrait-container .carousel-portrait-wrapper {
   max-width: unset;
   padding: 0 24px;
@@ -81,11 +77,6 @@ main .section.dark.carousel-portrait-container p {
   transition: transform 0.3s;
 }
 
-/* Hover — scale the card image */
-.carousel-portrait .carousel-portrait-slide:hover .carousel-portrait-slide-image img {
-  transform: scale(1.05);
-}
-
 /* Card content — overlays at bottom with gradient */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content {
   position: absolute;
@@ -111,6 +102,10 @@ main .section.dark.carousel-portrait-container p {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+main .section.dark.carousel-portrait-container p {
+  color: var(--text-color);
 }
 
 /* Image link inside content (acts as card background when no slide-image) */
@@ -142,7 +137,11 @@ main .section.dark.carousel-portrait-container p {
   transition: transform 0.3s;
 }
 
-/* Hover effect — scale image in content too */
+/* Hover — scale card images */
+.carousel-portrait .carousel-portrait-slide:hover .carousel-portrait-slide-image img {
+  transform: scale(1.05);
+}
+
 .carousel-portrait .carousel-portrait-slide:hover .carousel-portrait-slide-content p:has(a img) img {
   transform: scale(1.05);
 }
