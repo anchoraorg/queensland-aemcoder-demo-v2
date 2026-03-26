@@ -1,8 +1,15 @@
 /* Cards Masonry — Queensland-styled masonry grid */
 
-/* Orange heading preceding the masonry grid */
+/* Purple heading preceding the masonry grid */
 .default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
-  color: rgb(255 165 0);
+  color: rgb(190 79 253);
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  text-align: center;
+  margin: 40px 0 20px;
 }
 
 .cards-masonry > ul {
@@ -109,38 +116,56 @@
   fill: #00a5a4;
 }
 
-/* Card body — solid semi-transparent bg at bottom */
+/* Card body — default: transparent (first masonry "What holiday feeling") */
 .cards-masonry .cards-masonry-card-body {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgb(0 0 0 / 60%);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   z-index: 1;
   padding: 0;
+  background: transparent;
 }
 
+/* Default h3 — first masonry style (24px, trade-gothic, no bg) */
 .cards-masonry .cards-masonry-card-body h3 {
   color: white;
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 700;
   margin: 10px 0;
   padding: 0 12px;
   text-align: center;
   text-transform: uppercase;
   line-height: 1.2;
+  font-family: var(--heading-font-family);
+}
+
+/* Second masonry: solid bg when overlay (tags/hearts) is present */
+.cards-masonry .cards-masonry-card-link:has(.cards-masonry-card-overlay)
+  .cards-masonry-card-body {
+  background: rgb(0 0 0 / 60%);
+}
+
+/* Second masonry h3 — small cards: montserrat 12px/400 */
+.cards-masonry .cards-masonry-card-link:has(.cards-masonry-card-overlay)
+  .cards-masonry-card-body h3 {
+  font-size: 12px;
+  font-weight: 400;
   font-family: montserrat, montserrat-fallback, serif;
 }
 
-.cards-masonry > ul > li:first-child .cards-masonry-card-body h3 {
+/* Second masonry: big card h3 — trade-gothic 36px/700 */
+.cards-masonry > ul > li:first-child
+  .cards-masonry-card-link:has(.cards-masonry-card-overlay)
+  .cards-masonry-card-body h3 {
   font-size: 36px;
   font-weight: 700;
   line-height: 36px;
-  font-family: trade-gothic-next-compressed, sans-serif;
+  font-family: var(--heading-font-family);
 }
 
 /* Hide link/button text */
@@ -165,13 +190,14 @@
   background: transparent;
   font-size: 24px;
   font-weight: 700;
+  font-family: var(--heading-font-family);
   text-transform: uppercase;
   letter-spacing: 2.4px;
   padding: 5px 24px 6px;
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
-  height: 39px;
+  height: 50px;
   box-sizing: border-box;
 }
 
@@ -191,5 +217,4 @@
     grid-row: span 2;
     grid-column: span 2;
   }
-
 }

@@ -1,3 +1,4 @@
+/* Hero Newsletter — "Ready to ROAM?" banner */
 .hero-newsletter-container .hero-newsletter-wrapper {
   max-width: unset;
   padding: 0;
@@ -5,21 +6,13 @@
 
 .hero-newsletter {
   position: relative;
-  padding: 60px 24px;
-  min-height: 350px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-}
-
-.hero-newsletter::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgb(0 0 0 / 50%);
-  z-index: 1;
+  padding: 0;
 }
 
 /* Row container - full size */
@@ -29,27 +22,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* General element styles */
-.hero-newsletter img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.hero-newsletter h3 {
-  color: white;
-  font-size: 36px;
-  margin: 0 0 16px;
-  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-}
-
-.hero-newsletter p {
-  color: white;
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0 0 24px;
 }
 
 /* Image column - absolute fill as background */
@@ -64,34 +36,65 @@
   height: 100%;
 }
 
+.hero-newsletter > div > div:first-child picture {
+  display: block;
+  height: 100%;
+}
+
+.hero-newsletter img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* Text column - centered on top */
 .hero-newsletter > div > div:last-child {
   position: relative;
   z-index: 2;
   max-width: 600px;
+  padding: 40px 24px;
 }
 
-.hero-newsletter a {
-  display: inline-block;
-  background-color: var(--link-color);
+.hero-newsletter h3 {
   color: white;
-  padding: 12px 32px;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  text-shadow: 0 0 20px rgb(0 0 0);
+}
+
+.hero-newsletter p {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  text-shadow: 0 0 20px rgb(0 0 0);
+}
+
+.hero-newsletter .button-container {
+  margin: 0;
+}
+
+.hero-newsletter a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 165 164);
+  color: white;
+  padding: 0 30px;
+  height: 50px;
   border-radius: 8px;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
+  border: none;
   transition: background-color 0.2s;
 }
 
-.hero-newsletter a:hover {
-  background-color: var(--link-hover-color);
-}
-
-@media (width >= 900px) {
-  .hero-newsletter {
-    padding: 80px 32px;
-  }
-
-  .hero-newsletter h3 {
-    font-size: 48px;
-  }
+.hero-newsletter a.button:hover {
+  background-color: rgb(0 129 125);
 }

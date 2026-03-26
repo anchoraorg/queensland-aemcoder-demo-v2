@@ -1,8 +1,15 @@
 /* Carousel Portrait — Queensland-styled horizontal scrolling portrait cards */
 
-/* Orange heading preceding carousel-portrait blocks */
+/* Purple heading preceding carousel-portrait blocks */
 .default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
-  color: rgb(255 165 0);
+  color: rgb(190 79 253);
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  text-align: center;
+  margin: 40px 0 20px;
 }
 
 /* Override dark section styles for roadtrips carousel */
@@ -11,7 +18,7 @@ main .section.dark.carousel-portrait-container {
 }
 
 main .section.dark.carousel-portrait-container h2 {
-  color: #ffa500;
+  color: rgb(190 79 253);
 }
 
 .carousel-portrait-container .carousel-portrait-wrapper {
@@ -51,7 +58,7 @@ main .section.dark.carousel-portrait-container h2 {
   overflow: hidden;
   position: relative;
   background: transparent;
-  aspect-ratio: 270 / 500;
+  aspect-ratio: 270 / 450;
 }
 
 /* Portrait card image — fills card absolutely */
@@ -192,6 +199,8 @@ main .section.dark.carousel-portrait-container p {
   z-index: 2;
   text-transform: uppercase;
   letter-spacing: 1.6px;
+  font-family: var(--heading-font-family);
+  line-height: 1.1;
 }
 
 /* CTA link — hidden (card itself is the link) */
