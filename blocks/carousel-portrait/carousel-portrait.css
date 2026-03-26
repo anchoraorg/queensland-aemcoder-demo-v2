@@ -9,6 +9,11 @@ main .section.dark.carousel-portrait-container h2 {
   color: #ffa500;
 }
 
+/* Orange heading preceding carousel-portrait blocks */
+.default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
+  color: rgb(255 165 0);
+}
+
 .carousel-portrait-container .carousel-portrait-wrapper {
   padding: 0 24px;
 }
@@ -27,7 +32,7 @@ main .section.dark.carousel-portrait-container h2 {
 /* Horizontal scroll track */
 .carousel-portrait .carousel-portrait-slides {
   display: flex;
-  gap: 16px;
+  gap: 30px;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   overflow: auto hidden;
@@ -46,7 +51,7 @@ main .section.dark.carousel-portrait-container h2 {
   overflow: hidden;
   position: relative;
   background: transparent;
-  aspect-ratio: 270 / 480;
+  aspect-ratio: 270 / 500;
 }
 
 /* Portrait card image — fills card absolutely */
@@ -154,6 +159,8 @@ main .section.dark.carousel-portrait-container p {
   color: white;
   position: relative;
   z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
 }
 
 /* CTA link — hidden (card itself is the link) */
@@ -179,6 +186,7 @@ main .section.dark.carousel-portrait-container p {
 /* Label paragraph — small uppercase category label */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p:first-of-type {
   font-size: 12px;
+  font-weight: 600;
   text-transform: uppercase;
   color: white;
   letter-spacing: 1px;
@@ -187,9 +195,60 @@ main .section.dark.carousel-portrait-container p {
   z-index: 2;
 }
 
-/* Hide navigation buttons — scroll handles navigation */
+/* Custom scrollbar — matches original Queensland site */
+.carousel-portrait .carousel-portrait-scrollbar {
+  width: 300px;
+  height: 1px;
+  background: rgb(165 184 194);
+  margin: 30px auto 0;
+  position: relative;
+  border-radius: 0;
+}
+
+.carousel-portrait .carousel-portrait-scrollbar-drag {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 3px;
+  background: rgb(0 129 125);
+  border-radius: 2px;
+  transition: left 0.15s ease-out;
+}
+
+/* Arrow navigation buttons */
 .carousel-portrait .carousel-portrait-navigation-buttons {
   display: none;
+}
+
+/* "More events" / CTA link below carousel */
+.carousel-portrait-wrapper .carousel-portrait-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 57px;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0 165 164);
+  border: 2px solid rgb(0 165 164);
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  padding: 5px 24px 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  height: 39px;
+  box-sizing: border-box;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a:hover {
+  background: rgb(0 165 164);
+  color: white;
 }
 
 /* Hide indicators */
@@ -201,5 +260,55 @@ main .section.dark.carousel-portrait-container p {
 @media (width >= 600px) {
   .carousel-portrait .carousel-portrait-slide {
     flex: 0 0 270px;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: -40px;
+    right: -40px;
+    transform: translateY(-50%);
+    z-index: 5;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons button {
+    pointer-events: auto;
+    background: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+    transition: box-shadow 0.2s;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons button:hover {
+    box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons button::after {
+    content: '';
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons .slide-prev::after {
+    transform: rotate(135deg);
+    margin-left: 4px;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons .slide-next::after {
+    transform: rotate(-45deg);
+    margin-right: 4px;
   }
 }
