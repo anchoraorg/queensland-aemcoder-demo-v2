@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-// Content for "Unlock more Queensland magic" cards — maps link URLs to article titles and categories
+// Maps link URLs to article titles and categories for masonry cards
 const ARTICLE_CONTENT = {
   'https://www.queensland.com/au/en/places-to-see/destinations/brisbane/brisbane-city/howard-smith-wharves-brisbane': {
     title: "A foodie's guide to the best restaurants and bars at Howard Smith Wharves",
