@@ -1,3 +1,8 @@
+// YouTube video mappings — map image alt text to YouTube video IDs
+const VIDEO_MAP = {
+  'That Holiday Feeling video': 'X9FUaB-127Y',
+};
+
 function getYouTubeIdFromUrl(url) {
   if (!url) return null;
   const watchMatch = url.match(/[?&]v=([^&]+)/);
@@ -12,7 +17,8 @@ function getYouTubeIdFromUrl(url) {
 function getYouTubeIdFromAlt(alt) {
   if (!alt) return null;
   const match = alt.match(/\[yt:([^\]]+)\]/);
-  return match ? match[1] : null;
+  if (match) return match[1];
+  return VIDEO_MAP[alt] || null;
 }
 
 function createYouTubeEmbed(videoId) {

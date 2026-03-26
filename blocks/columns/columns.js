@@ -1,3 +1,10 @@
+// YouTube video mappings — map image alt text to YouTube video IDs
+// When AEM rewrites YouTube thumbnail URLs, the original video ID is lost.
+// This mapping lets columns.js detect and embed known YouTube videos.
+const VIDEO_MAP = {
+  'That Holiday Feeling video': 'X9FUaB-127Y',
+};
+
 function getYouTubeIdFromUrl(url) {
   if (!url) return null;
   // YouTube watch URL: youtube.com/watch?v=ID
@@ -16,7 +23,9 @@ function getYouTubeIdFromAlt(alt) {
   if (!alt) return null;
   // Convention: alt text contains [yt:VIDEO_ID]
   const match = alt.match(/\[yt:([^\]]+)\]/);
-  return match ? match[1] : null;
+  if (match) return match[1];
+  // Check the video mapping table
+  return VIDEO_MAP[alt] || null;
 }
 
 function createYouTubeEmbed(videoId) {
@@ -41,7 +50,7 @@ export default function decorate(block) {
       if (img) {
         // check image src for YouTube thumbnail URL
         let videoId = getYouTubeIdFromUrl(img.src);
-        // check alt text for [yt:VIDEO_ID] convention
+        // check alt text for [yt:VIDEO_ID] convention or known video mapping
         if (!videoId) videoId = getYouTubeIdFromAlt(img.alt);
         if (videoId) {
           const iframe = createYouTubeEmbed(videoId);
