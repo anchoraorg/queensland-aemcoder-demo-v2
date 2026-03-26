@@ -54,6 +54,23 @@
   object-fit: cover;
 }
 
+/* Video column — YouTube iframe fills the container */
+.columns-cta > div > .columns-cta-video-col {
+  order: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  min-height: 300px;
+}
+
+.columns-cta > div > .columns-cta-video-col iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Heading — specificity overrides dark section styles */
 main .section.columns-cta-container .columns-cta h2,
 main .section.columns-cta-container .columns-cta h1 {
@@ -116,6 +133,12 @@ main .section.columns-cta-container .columns-cta h1 {
     flex: 1;
     padding: 0;
     min-height: 540px;
+  }
+
+  .columns-cta > div > .columns-cta-video-col {
+    flex: 1;
+    padding: 0;
+    min-height: 394px;
   }
 
   /* Second columns-cta block: media LEFT, text RIGHT (normal order) */
