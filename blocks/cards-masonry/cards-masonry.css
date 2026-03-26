@@ -109,30 +109,38 @@
   fill: #00a5a4;
 }
 
-/* Card body — text at bottom with gradient */
+/* Card body — solid semi-transparent bg at bottom */
 .cards-masonry .cards-masonry-card-body {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 60px 20px 20px;
-  background: linear-gradient(transparent, rgb(0 0 0 / 65%));
+  background: rgb(0 0 0 / 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   z-index: 1;
+  padding: 0;
 }
 
 .cards-masonry .cards-masonry-card-body h3 {
   color: white;
   font-size: 12px;
-  font-weight: 700;
-  margin: 0;
+  font-weight: 400;
+  margin: 10px 0;
+  padding: 0 12px;
   text-align: center;
   text-transform: uppercase;
   line-height: 1.2;
+  font-family: montserrat, montserrat-fallback, serif;
 }
 
 .cards-masonry > ul > li:first-child .cards-masonry-card-body h3 {
   font-size: 36px;
-  line-height: 1;
+  font-weight: 700;
+  line-height: 36px;
+  font-family: trade-gothic-next-compressed, sans-serif;
 }
 
 /* Hide link/button text */
@@ -184,7 +192,4 @@
     grid-column: span 2;
   }
 
-  .cards-masonry > ul > li:first-child .cards-masonry-card-body {
-    padding: 80px 30px 30px;
-  }
 }
