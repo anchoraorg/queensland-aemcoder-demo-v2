@@ -95,6 +95,37 @@ main .section.dark.carousel-portrait-container h2 {
   justify-content: flex-end;
 }
 
+/* "More events" / CTA link below carousel */
+.carousel-portrait-wrapper .carousel-portrait-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 57px;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0 165 164);
+  border: 2px solid rgb(0 165 164);
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  padding: 5px 24px 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  height: 39px;
+  box-sizing: border-box;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a:hover {
+  background: rgb(0 165 164);
+  color: white;
+}
+
 /* Description text */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content p {
   margin: 4px 0;
@@ -161,37 +192,6 @@ main .section.dark.carousel-portrait-container p {
   z-index: 2;
   text-transform: uppercase;
   letter-spacing: 1.6px;
-}
-
-/* "More events" / CTA link below carousel */
-.carousel-portrait-wrapper .carousel-portrait-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 57px;
-}
-
-.carousel-portrait-wrapper .carousel-portrait-cta a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(0 165 164);
-  border: 2px solid rgb(0 165 164);
-  background: transparent;
-  font-size: 24px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2.4px;
-  padding: 5px 24px 6px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
-  height: 39px;
-  box-sizing: border-box;
-}
-
-.carousel-portrait-wrapper .carousel-portrait-cta a:hover {
-  background: rgb(0 165 164);
-  color: white;
 }
 
 /* CTA link — hidden (card itself is the link) */
