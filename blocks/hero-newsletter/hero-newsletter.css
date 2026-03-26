@@ -24,6 +24,32 @@
   justify-content: center;
 }
 
+.hero-newsletter p {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin: 0 0 24px;
+  text-shadow: 0 0 20px rgb(0 0 0);
+}
+
+.hero-newsletter h3 {
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  text-shadow: 0 0 20px rgb(0 0 0);
+}
+
+.hero-newsletter img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 /* Image column - absolute fill as background */
 .hero-newsletter > div > div:first-child {
   position: absolute;
@@ -41,38 +67,12 @@
   height: 100%;
 }
 
-.hero-newsletter img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
 /* Text column - centered on top */
 .hero-newsletter > div > div:last-child {
   position: relative;
   z-index: 2;
   max-width: 600px;
   padding: 40px 24px;
-}
-
-.hero-newsletter h3 {
-  color: white;
-  font-size: 48px;
-  font-weight: 600;
-  font-family: var(--heading-font-family);
-  text-transform: uppercase;
-  margin: 0 0 16px;
-  text-shadow: 0 0 20px rgb(0 0 0);
-}
-
-.hero-newsletter p {
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.6;
-  margin: 0 0 24px;
-  text-shadow: 0 0 20px rgb(0 0 0);
 }
 
 .hero-newsletter .button-container {

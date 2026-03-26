@@ -1,8 +1,8 @@
 /* Cards Masonry — Queensland-styled masonry grid */
 
-/* Purple heading preceding the masonry grid */
+/* Orange heading preceding the masonry grid (default) */
 .default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
-  color: rgb(190 79 253);
+  color: rgb(255 165 0);
   font-size: 48px;
   font-weight: 600;
   font-family: var(--heading-font-family);
@@ -10,6 +10,11 @@
   letter-spacing: 1.6px;
   text-align: center;
   margin: 40px 0 20px;
+}
+
+/* Purple heading for "Unlock more" (second masonry, after carousel) */
+.carousel-portrait-wrapper ~ .default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
+  color: rgb(190 79 253);
 }
 
 .cards-masonry > ul {

@@ -42,10 +42,6 @@ footer .footer .footer-links a {
   font-size: 16px;
 }
 
-footer .footer .footer-links a:hover {
-  text-decoration: underline;
-}
-
 /* Social icons */
 footer .footer .footer-social {
   display: flex;
@@ -64,6 +60,10 @@ footer .footer .footer-social a {
 
 footer .footer .footer-social a:hover {
   opacity: 0.8;
+}
+
+footer .footer .footer-links a:hover {
+  text-decoration: underline;
 }
 
 footer .footer .footer-social svg {
