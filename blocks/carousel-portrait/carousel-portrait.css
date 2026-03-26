@@ -12,12 +12,6 @@
   margin: 40px 0 20px;
 }
 
-/* Gold heading for "Explore our destinations" (follows second masonry) */
-.carousel-portrait-wrapper ~ .cards-masonry-wrapper
-  + .default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
-  color: rgb(255 197 77);
-}
-
 /* Override dark section styles for roadtrips carousel */
 main .section.dark.carousel-portrait-container {
   background-color: white;
@@ -25,6 +19,12 @@ main .section.dark.carousel-portrait-container {
 
 main .section.dark.carousel-portrait-container h2 {
   color: rgb(255 165 0);
+}
+
+/* Gold heading for "Explore our destinations" (follows second masonry) */
+.carousel-portrait-wrapper ~ .cards-masonry-wrapper
+  + .default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
+  color: rgb(255 197 77);
 }
 
 .carousel-portrait-container .carousel-portrait-wrapper {
