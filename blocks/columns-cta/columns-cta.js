@@ -9,6 +9,12 @@ function getYouTubeIdFromUrl(url) {
   return null;
 }
 
+function getYouTubeIdFromAlt(alt) {
+  if (!alt) return null;
+  const match = alt.match(/\[yt:([^\]]+)\]/);
+  return match ? match[1] : null;
+}
+
 function createYouTubeEmbed(videoId) {
   const iframe = document.createElement('iframe');
   iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1`;
@@ -29,7 +35,8 @@ export default function decorate(block) {
       // detect YouTube thumbnail images and convert to embedded iframe
       const img = col.querySelector('img');
       if (img) {
-        const videoId = getYouTubeIdFromUrl(img.src);
+        let videoId = getYouTubeIdFromUrl(img.src);
+        if (!videoId) videoId = getYouTubeIdFromAlt(img.alt);
         if (videoId) {
           const iframe = createYouTubeEmbed(videoId);
           col.textContent = '';
