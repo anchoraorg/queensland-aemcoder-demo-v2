@@ -1,5 +1,10 @@
 /* Carousel Portrait — Queensland-styled horizontal scrolling portrait cards */
 
+/* Orange heading preceding carousel-portrait blocks */
+.default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
+  color: rgb(255 165 0);
+}
+
 /* Override dark section styles for roadtrips carousel */
 main .section.dark.carousel-portrait-container {
   background-color: white;
@@ -7,11 +12,6 @@ main .section.dark.carousel-portrait-container {
 
 main .section.dark.carousel-portrait-container h2 {
   color: #ffa500;
-}
-
-/* Orange heading preceding carousel-portrait blocks */
-.default-content-wrapper:has(+ .carousel-portrait-wrapper) h2 {
-  color: rgb(255 165 0);
 }
 
 .carousel-portrait-container .carousel-portrait-wrapper {
@@ -163,6 +163,37 @@ main .section.dark.carousel-portrait-container p {
   letter-spacing: 1.6px;
 }
 
+/* "More events" / CTA link below carousel */
+.carousel-portrait-wrapper .carousel-portrait-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 57px;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0 165 164);
+  border: 2px solid rgb(0 165 164);
+  background: transparent;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  padding: 5px 24px 6px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  height: 39px;
+  box-sizing: border-box;
+}
+
+.carousel-portrait-wrapper .carousel-portrait-cta a:hover {
+  background: rgb(0 165 164);
+  color: white;
+}
+
 /* CTA link — hidden (card itself is the link) */
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content .button-container {
   font-size: 0;
@@ -218,37 +249,6 @@ main .section.dark.carousel-portrait-container p {
 /* Arrow navigation buttons */
 .carousel-portrait .carousel-portrait-navigation-buttons {
   display: none;
-}
-
-/* "More events" / CTA link below carousel */
-.carousel-portrait-wrapper .carousel-portrait-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 57px;
-}
-
-.carousel-portrait-wrapper .carousel-portrait-cta a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(0 165 164);
-  border: 2px solid rgb(0 165 164);
-  background: transparent;
-  font-size: 24px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2.4px;
-  padding: 5px 24px 6px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
-  height: 39px;
-  box-sizing: border-box;
-}
-
-.carousel-portrait-wrapper .carousel-portrait-cta a:hover {
-  background: rgb(0 165 164);
-  color: white;
 }
 
 /* Hide indicators */
