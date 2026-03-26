@@ -125,19 +125,20 @@ main .section.columns-container .columns h1 {
   }
 
   .columns > div > div {
-    flex: 1;
+    flex: 0 0 50%;
+    box-sizing: border-box;
     order: unset;
     padding: 48px 40px;
   }
 
   .columns > div > .columns-img-col {
-    flex: 1;
+    flex: 0 0 50%;
     padding: 0;
     min-height: 540px;
   }
 
   .columns > div > .columns-video-col {
-    flex: 1;
+    flex: 0 0 50%;
     padding: 0;
     min-height: 394px;
   }
