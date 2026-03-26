@@ -26,11 +26,26 @@
   justify-content: center;
 }
 
-/* Image column (first child) */
+/* Image column (first child) — absolute position fills container */
 .columns-cta > div > div:first-child {
   order: 0;
   padding: 0;
   overflow: hidden;
+  position: relative;
+  min-height: 300px;
+}
+
+.columns-cta > div > div:first-child picture {
+  position: absolute;
+  inset: 0;
+}
+
+.columns-cta > div > div:first-child img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Heading — specificity overrides dark section styles */

@@ -26,15 +26,27 @@
   justify-content: center;
 }
 
-/* Image column */
+/* Image column — use relative + absolute so image fills the container */
 .columns > div > .columns-img-col {
   order: 0;
   padding: 0;
   overflow: hidden;
+  position: relative;
+  min-height: 300px;
+}
+
+.columns > div > .columns-img-col picture {
+  position: absolute;
+  inset: 0;
 }
 
 .columns > div > .columns-img-col img {
   display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Heading — override dark section orange from carousel-portrait */
