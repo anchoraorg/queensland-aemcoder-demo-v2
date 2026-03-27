@@ -371,6 +371,7 @@ main .section.dark.carousel-portrait-container p {
   min-height: 350px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .carousel-portrait.featured .carousel-portrait-slide .carousel-portrait-slide-image img {
   height: 100%;
   object-fit: cover;
@@ -414,7 +415,6 @@ main .section.dark.carousel-portrait-container p {
   text-transform: none;
   display: block;
   -webkit-line-clamp: unset;
-  -webkit-box-orient: unset;
   overflow: visible;
 }
 
