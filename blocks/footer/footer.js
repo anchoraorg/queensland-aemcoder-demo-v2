@@ -40,33 +40,54 @@ const ACKNOWLEDGMENT = 'Tourism and Events Queensland acknowledges the Tradition
   + 'Elders past and present, and we value and respect Aboriginal '
   + 'and Torres Strait Islander cultures in all that we do.';
 
+/* eslint-disable max-len */
+const LOGO_TOURISM = 'https://www.queensland.com/content/dam/teq/consumer/global/footer-logos/logo-tourism.png';
+const LOGO_QLD_GOV = 'https://www.queensland.com/content/dam/teq/consumer/global/footer-logos/logo-queensland-gov.png';
+/* eslint-enable max-len */
+
 function buildLink(text, href, external = false) {
   const a = document.createElement('a');
   a.href = href;
   a.textContent = text;
-  if (external) a.target = '_blank';
+  if (external) {
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+  }
   return a;
 }
 
 function buildFooterContent() {
   const container = document.createElement('div');
 
-  // Links section
-  const linksDiv = document.createElement('div');
-  linksDiv.className = 'footer-links';
+  // ── TOP SECTION: Links ──
+  const topSection = document.createElement('div');
+  topSection.className = 'footer-top';
+
+  const topInner = document.createElement('div');
+  topInner.className = 'footer-top-inner';
 
   [FOOTER_LINKS_COL1, FOOTER_LINKS_COL2].forEach((col) => {
     const ul = document.createElement('ul');
+    ul.className = 'footer-links';
     col.forEach(({ text, href, ext }) => {
       const li = document.createElement('li');
       li.append(buildLink(text, href, ext));
       ul.append(li);
     });
-    linksDiv.append(ul);
+    topInner.append(ul);
   });
-  container.append(linksDiv);
 
-  // Social icons
+  topSection.append(topInner);
+  container.append(topSection);
+
+  // ── BOTTOM SECTION: Social + Acknowledgment + Logos ──
+  const bottomSection = document.createElement('div');
+  bottomSection.className = 'footer-bottom';
+
+  const bottomInner = document.createElement('div');
+  bottomInner.className = 'footer-bottom-inner';
+
+  // Social icons (left)
   const socialDiv = document.createElement('div');
   socialDiv.className = 'footer-social';
   SOCIAL_LINKS.forEach(({ label, href, icon }) => {
@@ -77,21 +98,49 @@ function buildFooterContent() {
     a.innerHTML = icon;
     socialDiv.append(a);
   });
-  container.append(socialDiv);
+  bottomInner.append(socialDiv);
 
-  // Acknowledgment
+  // Acknowledgment (center)
   const ackDiv = document.createElement('div');
   ackDiv.className = 'footer-acknowledgment';
   const ackP = document.createElement('p');
   ackP.textContent = ACKNOWLEDGMENT;
   ackDiv.append(ackP);
-  container.append(ackDiv);
+  bottomInner.append(ackDiv);
 
-  // Copyright
+  // Logos + Copyright (right)
+  const logosDiv = document.createElement('div');
+  logosDiv.className = 'footer-logos';
+
+  const logosRow = document.createElement('div');
+  logosRow.className = 'footer-logos-row';
+
+  const tourismImg = document.createElement('img');
+  tourismImg.src = LOGO_TOURISM;
+  tourismImg.alt = 'Tourism and Events Queensland';
+  tourismImg.loading = 'lazy';
+  logosRow.append(tourismImg);
+
+  const separator = document.createElement('span');
+  separator.className = 'footer-logo-separator';
+  logosRow.append(separator);
+
+  const govImg = document.createElement('img');
+  govImg.src = LOGO_QLD_GOV;
+  govImg.alt = 'Queensland Government';
+  govImg.loading = 'lazy';
+  logosRow.append(govImg);
+
+  logosDiv.append(logosRow);
+
   const copyDiv = document.createElement('div');
   copyDiv.className = 'footer-copyright';
   copyDiv.textContent = 'Tourism & Events Queensland \u00A9';
-  container.append(copyDiv);
+  logosDiv.append(copyDiv);
+
+  bottomInner.append(logosDiv);
+  bottomSection.append(bottomInner);
+  container.append(bottomSection);
 
   return container;
 }
