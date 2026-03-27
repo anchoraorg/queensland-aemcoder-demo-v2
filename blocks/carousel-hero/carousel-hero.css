@@ -304,20 +304,20 @@ main > .section.carousel-hero-container {
 }
 
 .carousel-hero .carousel-hero-discover h2 {
-  color: #c19a3e;
+  color: #ffc54d;
   font-family: var(--heading-font-family);
-  font-size: 34px;
-  font-weight: 700;
+  font-size: var(--heading-font-size-xl);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1.6px;
   margin: 0 0 24px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .carousel-hero .carousel-hero-discover p {
   color: var(--text-color);
-  font-size: var(--body-font-size-s);
-  line-height: 1.7;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
   margin: 0 0 16px;
   text-shadow: none;
 }

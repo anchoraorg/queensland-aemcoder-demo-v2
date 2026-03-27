@@ -2,7 +2,7 @@
 header .nav-wrapper {
   background-color: rgb(0 0 0 / 60%);
   width: 100%;
-  z-index: 2;
+  z-index: 200;
   position: fixed;
   color: white;
 }
@@ -169,10 +169,10 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-family: var(--heading-font-family);
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-family: var(--body-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: none;
   letter-spacing: 1.6px;
 }
 
