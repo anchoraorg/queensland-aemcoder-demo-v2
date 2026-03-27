@@ -1,4 +1,5 @@
 /* stylelint-disable max-line-length */
+
 /* Montserrat - body font (Google Fonts v31 variable font) */
 @font-face {
   font-family: montserrat;
@@ -37,9 +38,10 @@
 }
 
 /* Trade Gothic Next Compressed - heading font */
+
 /* Using condensed system font as primary with Adobe Fonts fallback */
 @font-face {
-  font-family: 'trade-gothic-next-compressed';
+  font-family: trade-gothic-next-compressed;
   font-style: normal;
   font-weight: 700;
   font-display: swap;
