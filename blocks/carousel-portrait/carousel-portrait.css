@@ -337,18 +337,82 @@ main .section.dark.carousel-portrait-container p {
 
 /* ============================================================
    Featured variant — "Let us show you around" destinations
+   Two-column layout: map left (488px) + carousel right (683px)
    Vertical card (image top, text bottom), one slide at a time
    ============================================================ */
 
+/* Two-column layout container */
+.carousel-portrait.featured .featured-layout {
+  display: flex;
+  flex-direction: row;
+  max-width: 1170px;
+  margin: 0 auto;
+  height: 563px;
+}
+
+/* --- Left: Map container --- */
+.carousel-portrait.featured .featured-map-container {
+  width: 488px;
+  height: 563px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-portrait.featured .featured-map-clipper {
+  position: absolute;
+  width: 975px;
+  height: 800px;
+  top: -100px;
+  left: -487px;
+  overflow: hidden;
+}
+
+.carousel-portrait.featured .featured-map-clipper svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* SVG region states — 12 active (artwork) paths beneath 12 inactive (teal) overlay paths */
+/* stylelint-disable-next-line selector-id-pattern */
+.carousel-portrait.featured .featured-map-clipper svg #map-0-Regions path.inactive {
+  transition: opacity 0.4s ease;
+}
+
+/* Artist credit */
+.carousel-portrait.featured .featured-map-credit {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  font-size: 13px;
+  color: rgb(88 111 120);
+  margin: 0;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* --- Right: Carousel container --- */
+.carousel-portrait.featured .featured-carousel-container {
+  width: 683px;
+  height: 563px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* Slide track */
 .carousel-portrait.featured .carousel-portrait-slides {
   overflow: visible;
   gap: 0;
   scroll-snap-type: none;
 }
 
+/* Individual slide — vertical card */
 .carousel-portrait.featured .carousel-portrait-slide {
   flex: none;
-  width: 100%;
+  width: 500px;
   max-width: 500px;
   margin: 0 auto;
   aspect-ratio: unset;
@@ -379,7 +443,7 @@ main .section.dark.carousel-portrait-container p {
   object-fit: cover;
 }
 
-/* Text — bottom of card, white bg */
+/* Text — bottom of card, white bg, centered */
 .carousel-portrait.featured .carousel-portrait-slide .carousel-portrait-slide-content {
   position: relative;
   bottom: unset;
@@ -403,7 +467,7 @@ main .section.dark.carousel-portrait-container p {
   letter-spacing: 2.4px;
   color: rgb(51 63 72);
   margin: 40px 0 20px;
-  line-height: 1.2;
+  line-height: 1.1;
   order: -1;
 }
 
@@ -428,6 +492,7 @@ main .section.dark.carousel-portrait-container p {
   letter-spacing: normal;
 }
 
+/* CTA button */
 .carousel-portrait.featured .carousel-portrait-slide .carousel-portrait-slide-content .button-container {
   font-size: 16px;
   line-height: normal;
@@ -462,14 +527,14 @@ main .section.dark.carousel-portrait-container p {
   border-color: rgb(0 129 125);
 }
 
-/* Featured slides container — card + nav area */
+/* Slides container — positioned for nav buttons */
 .carousel-portrait.featured .carousel-portrait-slides-container {
   position: relative;
-  max-width: 680px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 683px;
 }
 
-/* Featured nav buttons — horizontal, flanking the card */
+/* Nav buttons — horizontal, flanking the card */
 .carousel-portrait.featured .carousel-portrait-navigation-buttons {
   display: flex;
   position: absolute;
@@ -519,13 +584,28 @@ main .section.dark.carousel-portrait-container p {
   width: 270px;
 }
 
-/* Mobile: full-width card, nav below */
+/* === Mobile: stack vertically, hide map === */
 @media (width < 600px) {
+  .carousel-portrait.featured .featured-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .carousel-portrait.featured .featured-map-container {
+    display: none;
+  }
+
+  .carousel-portrait.featured .featured-carousel-container {
+    width: 100%;
+    height: auto;
+  }
+
   .carousel-portrait.featured .carousel-portrait-slides-container {
     max-width: 100%;
   }
 
   .carousel-portrait.featured .carousel-portrait-slide {
+    width: 100%;
     max-width: 100%;
   }
 

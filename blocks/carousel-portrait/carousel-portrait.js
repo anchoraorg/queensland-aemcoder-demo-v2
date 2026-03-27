@@ -79,10 +79,108 @@ function createScrollbar(block) {
   requestAnimationFrame(() => requestAnimationFrame(updateDrag));
 }
 
-function bindFeaturedEvents(block) {
-  const prevBtn = block.querySelector('.slide-prev');
-  const nextBtn = block.querySelector('.slide-next');
+// Region data for the Queensland map — maps slide heading to SVG data-region
+// and provides marker coordinates in SVG viewBox (0 0 1370 840)
+const REGION_MAP = {
+  brisbane: { region: 'Brisbane', cx: 1297, cy: 582 },
+  'gold coast': { region: 'Gold-Coast', cx: 1309, cy: 602 },
+  'sunshine coast': { region: 'Sunshine-Coast', cx: 1287, cy: 549 },
+  'the whitsundays': { region: 'The-Whitsundays', cx: 1141, cy: 363 },
+  'cairns & great barrier reef': { region: 'Tropical-North-Queensland', cx: 962, cy: 183 },
+  'southern great barrier reef': { region: 'Southern-Great-Barrier-Reef', cx: 1239, cy: 473 },
+  'fraser coast': { region: 'Fraser-Coast', cx: 1292, cy: 514 },
+  'great barrier reef': { region: 'Great-Barrier-Reef', cx: 1146, cy: 244 },
+  'mackay isaac': { region: 'Mackay-region', cx: 1142, cy: 408 },
+  'outback queensland': { region: 'Outback-Queensland', cx: 1032, cy: 471 },
+  'queensland country': { region: 'Southern-Queensland-Country', cx: 1194, cy: 533 },
+  townsville: { region: 'Townsville-North-Queensland', cx: 1084, cy: 346 },
+};
+
+function updateMapRegion(block, slideIndex) {
+  const svg = block.closest('.carousel-portrait-wrapper')
+    ?.querySelector('.featured-map-container svg');
+  if (!svg) return;
+
   const slides = block.querySelectorAll('.carousel-portrait-slide');
+  const slide = slides[slideIndex];
+  if (!slide) return;
+
+  const heading = slide.querySelector('h1');
+  const headingText = heading?.textContent?.trim()?.toLowerCase() || '';
+  const regionInfo = REGION_MAP[headingText];
+  if (!regionInfo) return;
+
+  // Toggle inactive teal overlay paths:
+  // - Current region's inactive path → opacity 0 (reveals artwork beneath)
+  // - All other inactive paths → opacity 1 (solid teal covers artwork)
+  const inactivePaths = svg.querySelectorAll('#map-0-Regions path.inactive');
+  inactivePaths.forEach((path) => {
+    const isCurrentRegion = path.getAttribute('data-region') === regionInfo.region;
+    path.style.opacity = isCurrentRegion ? '0' : '1';
+  });
+}
+
+async function setupFeaturedLayout(block) {
+  const wrapper = block.closest('.carousel-portrait-wrapper');
+  if (!wrapper) return;
+
+  // Create the two-column layout container
+  const twoCol = document.createElement('div');
+  twoCol.classList.add('featured-layout');
+
+  // --- Left: Map container ---
+  const mapContainer = document.createElement('div');
+  mapContainer.classList.add('featured-map-container');
+
+  const mapClipper = document.createElement('div');
+  mapClipper.classList.add('featured-map-clipper');
+
+  // Load the SVG map
+  try {
+    const resp = await fetch(`${window.hlx?.codeBasePath || ''}/blocks/carousel-portrait/queensland-map.svg`);
+    if (resp.ok) {
+      const svgText = await resp.text();
+      mapClipper.innerHTML = svgText;
+
+      // Add a marker circle to the SVG
+      // SVG has 24 paths: 12 "active" (artwork fill) + 12 "inactive" (teal overlay)
+      // The inactive paths sit on top and hide the artwork.
+      // On slide change, the current region's inactive path gets opacity 0
+      // to reveal the artwork beneath. All other inactive paths stay opaque.
+    }
+  } catch (e) {
+    // SVG load failed — map won't show, carousel still works
+  }
+
+  mapContainer.appendChild(mapClipper);
+
+  // Artist credit
+  const credit = document.createElement('p');
+  credit.classList.add('featured-map-credit');
+  credit.textContent = "Artist: Brian 'Binna' Swindley";
+  mapContainer.appendChild(credit);
+
+  // --- Right: Carousel container ---
+  const carouselContainer = document.createElement('div');
+  carouselContainer.classList.add('featured-carousel-container');
+
+  // Move existing block content into the carousel container
+  while (block.firstChild) {
+    carouselContainer.appendChild(block.firstChild);
+  }
+
+  twoCol.appendChild(mapContainer);
+  twoCol.appendChild(carouselContainer);
+  block.appendChild(twoCol);
+}
+
+function bindFeaturedEvents(block) {
+  const carouselContainer = block.querySelector('.featured-carousel-container');
+  const root = carouselContainer || block;
+
+  const prevBtn = root.querySelector('.slide-prev');
+  const nextBtn = root.querySelector('.slide-next');
+  const slides = root.querySelectorAll('.carousel-portrait-slide');
   let current = 0;
 
   function goTo(idx) {
@@ -96,7 +194,7 @@ function bindFeaturedEvents(block) {
     block.dataset.activeSlide = current;
 
     // Update scrollbar
-    const scrollbar = block.querySelector('.carousel-portrait-scrollbar');
+    const scrollbar = root.querySelector('.carousel-portrait-scrollbar');
     if (scrollbar) {
       const drag = scrollbar.querySelector('.carousel-portrait-scrollbar-drag');
       if (drag) {
@@ -107,6 +205,9 @@ function bindFeaturedEvents(block) {
         drag.style.left = `${(current / (slides.length - 1)) * maxLeft}px`;
       }
     }
+
+    // Update map region highlight
+    updateMapRegion(block, current);
   }
 
   if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
@@ -313,8 +414,14 @@ export default async function decorate(block) {
   injectFallbackImages(block);
 
   if (!isSingleSlide) {
-    bindEvents(block);
-    createScrollbar(block);
+    if (block.classList.contains('featured')) {
+      await setupFeaturedLayout(block);
+      createScrollbar(block);
+      bindEvents(block);
+    } else {
+      bindEvents(block);
+      createScrollbar(block);
+    }
   }
 
   addCtaButton(block);
