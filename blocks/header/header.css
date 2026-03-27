@@ -152,6 +152,14 @@ header nav .nav-brand img {
   height: auto;
 }
 
+/* Fallback logo when img is stripped by EDS processing */
+header nav .nav-brand a:only-child:empty {
+  display: block;
+  width: 145px;
+  height: 40px;
+  background: url('https://www.queensland.com/content/dam/teq/consumer/global/logos/26Queensland_white.svg') center / contain no-repeat;
+}
+
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
@@ -169,10 +177,10 @@ header nav[aria-expanded='true'] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-family: var(--body-font-family);
-  font-size: 16px;
-  font-weight: 400;
-  text-transform: none;
+  font-family: var(--heading-font-family);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: 1.6px;
 }
 

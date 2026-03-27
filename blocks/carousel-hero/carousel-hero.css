@@ -105,14 +105,15 @@ main > .section.carousel-hero-container {
   display: inline-block;
   background-color: var(--link-color, #00a5a4);
   color: white;
-  font-weight: 600;
-  padding: 12px 32px;
+  font-weight: 700;
+  padding: 5px 24px 6px;
   border-radius: 8px;
   text-decoration: none;
   transition: background-color 0.2s;
   text-transform: uppercase;
   font-family: var(--heading-font-family);
-  letter-spacing: 1.2px;
+  font-size: 24px;
+  letter-spacing: 2.4px;
 }
 
 .carousel-hero .carousel-hero-slide .carousel-hero-slide-content a:hover,
@@ -235,17 +236,9 @@ main > .section.carousel-hero-container {
   background-color: rgb(255 255 255 / 100%);
 }
 
-/* Navigation buttons – white semi-transparent circles */
+/* Navigation buttons – hidden (original has no arrows) */
 .carousel-hero .carousel-hero-navigation-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 2;
+  display: none;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
@@ -287,16 +280,16 @@ main > .section.carousel-hero-container {
   left: calc(50% - 2px);
 }
 
-/* Discover section below hero */
+/* Discover section – white card overlapping hero bottom */
 .carousel-hero .carousel-hero-discover {
-  background: transparent;
+  background: white;
   text-align: center;
-  padding: 0 24px;
-  max-width: 760px;
-  margin: 0 auto;
+  padding: 40px 60px 32px;
+  max-width: 860px;
+  margin: -80px auto 0;
   position: relative;
   z-index: 3;
-  border-radius: 0;
+  border-radius: 20px 20px 0 0;
 }
 
 .carousel-hero .carousel-hero-discover h2 {
@@ -350,23 +343,13 @@ main > .section.carousel-hero-container {
     padding: 0 20px;
   }
 
-  .carousel-hero .carousel-hero-navigation-buttons {
-    left: 24px;
-    right: 24px;
-  }
-
-  .carousel-hero .carousel-hero-navigation-buttons button {
-    width: 52px;
-    height: 52px;
-  }
-
   .carousel-hero .carousel-hero-actions {
     bottom: 89px;
   }
 
   .carousel-hero .carousel-hero-discover {
-    padding: 0;
-    max-width: 760px;
-    margin-top: 0;
+    padding: 40px 80px 32px;
+    max-width: 860px;
+    margin-top: -80px;
   }
 }
