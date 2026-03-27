@@ -46,12 +46,7 @@
   --header-height: var(--nav-height);
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: trade-gothic-fallback;
-  size-adjust: 82%;
-  src: local('Arial Narrow');
-}
+/* fallback fonts - trade-gothic-fallback loaded from fonts.css as Barlow Condensed */
 
 @font-face {
   font-family: montserrat-fallback;
