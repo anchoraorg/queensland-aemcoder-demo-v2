@@ -169,6 +169,14 @@ async function setupFeaturedLayout(block) {
     carouselContainer.appendChild(block.firstChild);
   }
 
+  // Inject inline SVG chevrons into featured nav buttons
+  const chevronPath = 'M1.70365 0L0 1.7512 5.59271 7.5 0 13.24724 1.70365 15 9 7.5z';
+  const chevronSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 15" width="9" height="15"><path fill="currentColor" fill-rule="evenodd" d="${chevronPath}"></path></svg>`;
+  const prevBtnEl = carouselContainer.querySelector('.slide-prev');
+  const nextBtnEl = carouselContainer.querySelector('.slide-next');
+  if (prevBtnEl) prevBtnEl.innerHTML = `<span style="transform:scaleX(-1);display:flex">${chevronSvg}</span>`;
+  if (nextBtnEl) nextBtnEl.innerHTML = `<span style="display:flex">${chevronSvg}</span>`;
+
   twoCol.appendChild(mapContainer);
   twoCol.appendChild(carouselContainer);
   block.appendChild(twoCol);
@@ -189,8 +197,8 @@ function bindFeaturedEvents(block) {
       s.setAttribute('aria-hidden', i !== current);
       s.style.display = i === current ? '' : 'none';
     });
-    if (prevBtn) prevBtn.disabled = current === 0;
-    if (nextBtn) nextBtn.disabled = current === slides.length - 1;
+    if (prevBtn) prevBtn.style.display = current === 0 ? 'none' : 'flex';
+    if (nextBtn) nextBtn.style.display = current === slides.length - 1 ? 'none' : 'flex';
     block.dataset.activeSlide = current;
 
     // Update scrollbar

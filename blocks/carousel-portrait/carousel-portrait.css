@@ -347,13 +347,13 @@ main .section.dark.carousel-portrait-container p {
   flex-direction: row;
   max-width: 1170px;
   margin: 0 auto;
-  height: 563px;
+  height: 562.5px;
 }
 
 /* --- Left: Map container --- */
 .carousel-portrait.featured .featured-map-container {
-  width: 488px;
-  height: 563px;
+  width: 487.5px;
+  height: 562.5px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
@@ -393,8 +393,8 @@ main .section.dark.carousel-portrait-container p {
 
 /* --- Right: Carousel container --- */
 .carousel-portrait.featured .featured-carousel-container {
-  width: 683px;
-  height: 563px;
+  width: 682.5px;
+  height: 562.5px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -534,20 +534,14 @@ main .section.dark.carousel-portrait-container p {
   max-width: 683px;
 }
 
-/* Nav buttons — horizontal, flanking the card */
+/* Nav buttons — positioned absolutely flanking the card */
 .carousel-portrait.featured .carousel-portrait-navigation-buttons {
-  display: flex;
+  display: block;
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  flex-direction: row;
-  justify-content: space-between;
+  inset: 0;
   z-index: 5;
   pointer-events: none;
-  width: auto;
-  gap: 0;
+  transform: none;
 }
 
 .carousel-portrait.featured .carousel-portrait-navigation-buttons button {
@@ -563,6 +557,17 @@ main .section.dark.carousel-portrait-container p {
   justify-content: center;
   box-shadow: none;
   transition: background-color 0.2s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-portrait.featured .carousel-portrait-navigation-buttons .slide-prev {
+  left: 0;
+}
+
+.carousel-portrait.featured .carousel-portrait-navigation-buttons .slide-next {
+  right: 0;
 }
 
 .carousel-portrait.featured .carousel-portrait-navigation-buttons button:hover {
@@ -570,13 +575,15 @@ main .section.dark.carousel-portrait-container p {
   box-shadow: none;
 }
 
-.carousel-portrait.featured .carousel-portrait-navigation-buttons button:disabled {
-  opacity: 0.4;
-  cursor: default;
+/* Kill CSS pseudo-element chevron — featured uses inline SVG arrows */
+.carousel-portrait.featured .carousel-portrait-navigation-buttons button::after {
+  content: none;
 }
 
-.carousel-portrait.featured .carousel-portrait-navigation-buttons button::after {
-  border-color: white;
+.carousel-portrait.featured .carousel-portrait-navigation-buttons button svg {
+  width: 9px;
+  height: 15px;
+  color: white;
 }
 
 /* Featured scrollbar */
@@ -616,9 +623,14 @@ main .section.dark.carousel-portrait-container p {
 
   .carousel-portrait.featured .carousel-portrait-navigation-buttons {
     position: static;
-    transform: none;
+    display: flex;
     justify-content: center;
     gap: 10px;
     margin-top: 20px;
+  }
+
+  .carousel-portrait.featured .carousel-portrait-navigation-buttons button {
+    position: static;
+    transform: none;
   }
 }
