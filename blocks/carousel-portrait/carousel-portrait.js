@@ -79,7 +79,49 @@ function createScrollbar(block) {
   requestAnimationFrame(() => requestAnimationFrame(updateDrag));
 }
 
+function bindFeaturedEvents(block) {
+  const prevBtn = block.querySelector('.slide-prev');
+  const nextBtn = block.querySelector('.slide-next');
+  const slides = block.querySelectorAll('.carousel-portrait-slide');
+  let current = 0;
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, slides.length - 1));
+    slides.forEach((s, i) => {
+      s.setAttribute('aria-hidden', i !== current);
+      s.style.display = i === current ? '' : 'none';
+    });
+    if (prevBtn) prevBtn.disabled = current === 0;
+    if (nextBtn) nextBtn.disabled = current === slides.length - 1;
+    block.dataset.activeSlide = current;
+
+    // Update scrollbar
+    const scrollbar = block.querySelector('.carousel-portrait-scrollbar');
+    if (scrollbar) {
+      const drag = scrollbar.querySelector('.carousel-portrait-scrollbar-drag');
+      if (drag) {
+        const ratio = 1 / slides.length;
+        const dragWidth = Math.max(scrollbar.offsetWidth * ratio, 40);
+        const maxLeft = scrollbar.offsetWidth - dragWidth;
+        drag.style.width = `${dragWidth}px`;
+        drag.style.left = `${(current / (slides.length - 1)) * maxLeft}px`;
+      }
+    }
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+  // Initialise — show first slide only
+  goTo(0);
+}
+
 function bindEvents(block) {
+  if (block.classList.contains('featured')) {
+    bindFeaturedEvents(block);
+    return;
+  }
+
   const slideIndicators = block.querySelector('.carousel-portrait-slide-indicators');
   if (slideIndicators) {
     slideIndicators.querySelectorAll('button').forEach((button) => {
@@ -197,10 +239,25 @@ function createSlide(row, slideIndex, carouselId) {
   return slide;
 }
 
+function isFeaturedSection(block) {
+  const wrapper = block.closest('.carousel-portrait-wrapper');
+  const prev = wrapper?.previousElementSibling;
+  const heading = prev?.querySelector('h2');
+  if (heading && heading.textContent.trim().toLowerCase().includes('let us show you around')) {
+    return true;
+  }
+  return false;
+}
+
 let carouselPortraitId = 0;
 export default async function decorate(block) {
   carouselPortraitId += 1;
   block.setAttribute('id', `carousel-portrait-${carouselPortraitId}`);
+
+  if (isFeaturedSection(block)) {
+    block.classList.add('featured');
+  }
+
   const rows = block.querySelectorAll(':scope > div');
   const isSingleSlide = rows.length < 2;
 
