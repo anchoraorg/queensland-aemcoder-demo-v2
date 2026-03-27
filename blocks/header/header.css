@@ -294,6 +294,7 @@ header nav .nav-tools p {
   line-height: 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 header nav .nav-tools a:any-link {
   display: block;
   width: 28px;

@@ -82,6 +82,26 @@ function createSlide(row, slideIndex, carouselId) {
     slide.append(column);
   });
 
+  /* Split subtitle/title headings (e.g. "Outback Queenslandis something else") */
+  const heading = slide.querySelector('h1');
+  if (heading) {
+    const text = heading.textContent;
+    const match = text.match(/^(.+?)(is something else)$/i);
+    if (match) {
+      const subtitle = document.createElement('span');
+      subtitle.className = 'carousel-hero-subtitle';
+      subtitle.textContent = match[1].trim();
+
+      const title = document.createElement('span');
+      title.className = 'carousel-hero-title';
+      title.textContent = match[2];
+
+      heading.textContent = '';
+      heading.appendChild(subtitle);
+      heading.appendChild(title);
+    }
+  }
+
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
