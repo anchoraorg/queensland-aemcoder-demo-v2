@@ -67,6 +67,8 @@ function buildFooterContent() {
   topInner.className = 'footer-top-inner';
 
   [FOOTER_LINKS_COL1, FOOTER_LINKS_COL2].forEach((col) => {
+    const colDiv = document.createElement('div');
+    colDiv.className = 'footer-links-col';
     const ul = document.createElement('ul');
     ul.className = 'footer-links';
     col.forEach(({ text, href, ext }) => {
@@ -74,8 +76,46 @@ function buildFooterContent() {
       li.append(buildLink(text, href, ext));
       ul.append(li);
     });
-    topInner.append(ul);
+    colDiv.append(ul);
+    topInner.append(colDiv);
   });
+
+  // Language selector (third column)
+  const langDiv = document.createElement('div');
+  langDiv.className = 'footer-lang-col';
+  const langLabel = document.createElement('label');
+  langLabel.className = 'footer-lang-label';
+  const langText = document.createElement('span');
+  langText.className = 'footer-lang-text';
+  langText.textContent = 'Language';
+  langLabel.append(langText);
+  const langSelect = document.createElement('select');
+  langSelect.className = 'footer-lang-select';
+  langSelect.setAttribute('aria-label', 'Language');
+  const regions = [
+    { label: 'choose region', value: '/au/en/home' },
+    { label: 'Australian - EN', value: '/au/en/home' },
+    { label: 'India - EN', value: '/in/en/home' },
+    { label: 'New Zealand - EN', value: '/nz/en/home' },
+    { label: 'Singapore - EN', value: '/sg/en/home' },
+    { label: 'United Kingdom - EN', value: '/gb/en/home' },
+    { label: 'United States - EN', value: '/us/en/home' },
+    { label: 'Deutschland - DE', value: '/de/de/home' },
+    { label: 'France - FR', value: '/fr/fr/home' },
+    { label: '台灣 - TW', value: '/tw/zh/home' },
+    { label: '日本 - JP', value: '/jp/ja/home' },
+    { label: '香港 - HK', value: '/hk/zh/home' },
+    { label: '대한민국 - KR', value: '/kr/ko/home' },
+  ];
+  regions.forEach(({ label, value }) => {
+    const opt = document.createElement('option');
+    opt.value = value;
+    opt.textContent = label;
+    langSelect.append(opt);
+  });
+  langLabel.append(langSelect);
+  langDiv.append(langLabel);
+  topInner.append(langDiv);
 
   topSection.append(topInner);
   container.append(topSection);

@@ -9,7 +9,7 @@ footer .footer p {
   margin: 0;
 }
 
-/* ── TOP SECTION: Links ── */
+/* ── TOP SECTION: Links + Language ── */
 footer .footer .footer-top {
   padding: 50px 0;
 }
@@ -20,7 +20,18 @@ footer .footer .footer-top-inner {
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 0 60px;
+}
+
+/* Equal-width columns for top section */
+footer .footer .footer-links-col {
+  flex: 1 1 33.33%;
+  min-width: 0;
+}
+
+footer .footer .footer-lang-col {
+  flex: 1 1 33.33%;
+  min-width: 0;
+  padding-top: 20px;
 }
 
 /* Link lists */
@@ -44,6 +55,36 @@ footer .footer .footer-links a {
   line-height: 24px;
 }
 
+/* Language selector */
+footer .footer .footer-lang-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+footer .footer .footer-lang-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  line-height: 24px;
+}
+
+footer .footer .footer-lang-select {
+  width: 100%;
+  max-width: 370px;
+  height: 55px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-family: var(--body-font-family);
+  font-weight: 600;
+  color: rgb(51 63 72);
+  background-color: white;
+  border: none;
+  border-radius: 0;
+  appearance: auto;
+  cursor: pointer;
+}
+
 /* ── BOTTOM SECTION: Social + Acknowledgment + Logos ── */
 footer .footer .footer-bottom {
   background-color: rgb(51 63 72 / 40%);
@@ -53,7 +94,7 @@ footer .footer .footer-bottom {
 footer .footer .footer-bottom-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -76,6 +117,12 @@ footer .footer .footer-social a {
   height: 23px;
 }
 
+footer .footer .footer-social svg {
+  width: 23px;
+  height: 23px;
+  fill: currentcolor;
+}
+
 /* Hover states — ordered after all base anchor rules */
 footer .footer .footer-links a:hover {
   text-decoration: underline;
@@ -85,17 +132,11 @@ footer .footer .footer-social a:hover {
   opacity: 0.8;
 }
 
-footer .footer .footer-social svg {
-  width: 23px;
-  height: 23px;
-  fill: currentcolor;
-}
-
 /* Acknowledgment (center) */
 footer .footer .footer-acknowledgment {
-  flex: 1;
-  padding: 0 40px;
-  max-width: 520px;
+  flex: 0 1 auto;
+  width: 468px;
+  padding: 0;
 }
 
 footer .footer .footer-acknowledgment p {
@@ -137,12 +178,20 @@ footer .footer .footer-copyright {
   color: white;
 }
 
-/* ── MOBILE: stack bottom section vertically ── */
+/* ── MOBILE: stack sections vertically ── */
 @media (width < 900px) {
   footer .footer .footer-top-inner {
     flex-direction: column;
-    gap: 0;
     padding: 0 20px;
+  }
+
+  footer .footer .footer-links-col,
+  footer .footer .footer-lang-col {
+    flex: 1 1 100%;
+  }
+
+  footer .footer .footer-lang-col {
+    padding-top: 10px;
   }
 
   footer .footer .footer-bottom-inner {
@@ -154,7 +203,7 @@ footer .footer .footer-copyright {
 
   footer .footer .footer-acknowledgment {
     padding: 0;
-    max-width: none;
+    width: auto;
   }
 
   footer .footer .footer-logos {
