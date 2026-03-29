@@ -24,6 +24,7 @@
 }
 
 /* Barlow Condensed - fallback for Trade Gothic when Typekit unavailable */
+
 /* size-adjust: 87% compensates for Barlow being ~15% wider than Trade Gothic */
 @font-face {
   font-family: trade-gothic-fallback;
