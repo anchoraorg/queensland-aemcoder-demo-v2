@@ -94,7 +94,7 @@ function createSlide(row, slideIndex, carouselId) {
 
       const title = document.createElement('span');
       title.className = 'carousel-hero-title';
-      title.textContent = match[2];
+      [, , title.textContent] = match;
 
       heading.textContent = '';
       heading.appendChild(subtitle);
