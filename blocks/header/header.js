@@ -260,4 +260,12 @@ export default async function decorate(block) {
   if (getMetadata('breadcrumbs').toLowerCase() === 'true') {
     navWrapper.append(await buildBreadcrumbs());
   }
+
+  // Toggle scrolled header style when page scrolls past hero
+  const scrollThreshold = 100;
+  const onScroll = () => {
+    navWrapper.classList.toggle('header-scrolled', window.scrollY > scrollThreshold);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 }

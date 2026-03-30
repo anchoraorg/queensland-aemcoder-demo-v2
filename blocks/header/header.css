@@ -5,6 +5,15 @@ header .nav-wrapper {
   z-index: 200;
   position: fixed;
   color: white;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+/* Scrolled state — white bg with dark text (matches original site) */
+header .nav-wrapper.header-scrolled {
+  background-color: #fff;
+  color: rgb(51 63 72);
+  border-bottom-color: rgb(166 184 193 / 20%);
 }
 
 header nav {
@@ -158,6 +167,15 @@ header nav .nav-brand a:only-child:empty {
   width: 145px;
   height: 40px;
   background: url('https://www.queensland.com/content/dam/teq/consumer/global/logos/26Queensland_white.svg') center / contain no-repeat;
+}
+
+/* Scrolled: swap logo to dark teal */
+header .nav-wrapper.header-scrolled nav .nav-brand img {
+  content: url('https://www.queensland.com/content/dam/teq/consumer/global/logos/26Queensland_dark%20teal.svg');
+}
+
+header .nav-wrapper.header-scrolled nav .nav-brand a:only-child:empty {
+  background-image: url('https://www.queensland.com/content/dam/teq/consumer/global/logos/26Queensland_dark%20teal.svg');
 }
 
 /* sections */
@@ -318,6 +336,17 @@ header nav .nav-tools p:first-child a:any-link {
 /* Search (magnifying glass) icon */
 header nav .nav-tools p:last-child a:any-link {
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20.2 20.2'%3E%3Cg fill='none' stroke='white' stroke-width='2' transform='translate(10 10)'%3E%3Ccircle cx='-2' cy='0' r='7'/%3E%3Cpath stroke-linecap='round' d='M3.2 4.2l6 6'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Scrolled: dark icons */
+/* stylelint-disable-next-line no-descending-specificity */
+header .nav-wrapper.header-scrolled nav .nav-tools p:first-child a:any-link {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.6 22.6'%3E%3Cpath fill='none' stroke='%23333F48' stroke-width='1.5' d='M21.2 12l-8.6 8.7c-.2.2-.5.2-.6 0L3.4 12c-1.1-1.1-1.7-2.7-1.7-4.3 0-1.6.6-3.1 1.7-4.3 1.2-1.2 2.7-1.8 4.2-1.8s3 .6 4.2 1.8c.3.3.7.3 1 0 2.3-2.4 6.1-2.4 8.4 0 1.1 1.1 1.7 2.7 1.7 4.3 0 1.7-.6 3.2-1.7 4.3'/%3E%3C/svg%3E");
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+header .nav-wrapper.header-scrolled nav .nav-tools p:last-child a:any-link {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20.2 20.2'%3E%3Cg fill='none' stroke='%23333F48' stroke-width='2' transform='translate(10 10)'%3E%3Ccircle cx='-2' cy='0' r='7'/%3E%3Cpath stroke-linecap='round' d='M3.2 4.2l6 6'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* breadcrumbs */
