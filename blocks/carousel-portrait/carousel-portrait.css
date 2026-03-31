@@ -293,14 +293,10 @@ main .section.dark.carousel-portrait-container p {
   }
 
   .carousel-portrait .carousel-portrait-navigation-buttons {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     pointer-events: none;
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
+    inset: 0;
     z-index: 5;
   }
 
@@ -318,6 +314,17 @@ main .section.dark.carousel-portrait-container p {
     color: white;
     z-index: 100;
     transition: background-color 0.2s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons .slide-prev {
+    left: -50px;
+  }
+
+  .carousel-portrait .carousel-portrait-navigation-buttons .slide-next {
+    right: -50px;
   }
 
   .carousel-portrait .carousel-portrait-navigation-buttons button:hover {
