@@ -412,9 +412,10 @@ export default async function decorate(block) {
 
     const slideNavButtons = document.createElement('div');
     slideNavButtons.classList.add('carousel-portrait-navigation-buttons');
+    const chevronSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 15" width="9" height="15"><path fill="currentColor" fill-rule="evenodd" d="M1.70365 0L0 1.7512 5.59271 7.5 0 13.24724 1.70365 15 9 7.5z"></path></svg>';
     slideNavButtons.innerHTML = `
-      <button type="button" class= "slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}"></button>
-      <button type="button" class="slide-next" aria-label="${placeholders.nextSlide || 'Next Slide'}"></button>
+      <button type="button" class="slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}">${chevronSvg}</button>
+      <button type="button" class="slide-next" aria-label="${placeholders.nextSlide || 'Next Slide'}">${chevronSvg}</button>
     `;
 
     container.append(slideNavButtons);

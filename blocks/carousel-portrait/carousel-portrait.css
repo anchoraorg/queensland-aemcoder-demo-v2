@@ -306,40 +306,32 @@ main .section.dark.carousel-portrait-container p {
 
   .carousel-portrait .carousel-portrait-navigation-buttons button {
     pointer-events: auto;
-    background: white;
-    border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    background: rgb(88 111 120);
+    border: 1px solid white;
+    width: 50px;
+    height: 50px;
+    border-radius: 0;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
-    transition: box-shadow 0.2s;
+    color: white;
+    z-index: 100;
+    transition: background-color 0.2s;
   }
 
   .carousel-portrait .carousel-portrait-navigation-buttons button:hover {
-    box-shadow: 0 4px 12px rgb(0 0 0 / 25%);
+    background: rgb(68 91 100);
   }
 
-  .carousel-portrait .carousel-portrait-navigation-buttons button::after {
-    content: '';
+  .carousel-portrait .carousel-portrait-navigation-buttons button svg {
+    width: 9px;
+    height: 15px;
     display: block;
-    width: 10px;
-    height: 10px;
-    border-right: 2px solid #333;
-    border-bottom: 2px solid #333;
   }
 
-  .carousel-portrait .carousel-portrait-navigation-buttons .slide-prev::after {
-    transform: rotate(135deg);
-    margin-left: 4px;
-  }
-
-  .carousel-portrait .carousel-portrait-navigation-buttons .slide-next::after {
-    transform: rotate(-45deg);
-    margin-right: 4px;
+  .carousel-portrait .carousel-portrait-navigation-buttons .slide-prev svg {
+    transform: scaleX(-1);
   }
 }
 
