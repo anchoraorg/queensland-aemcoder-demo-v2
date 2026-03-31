@@ -159,6 +159,8 @@ function buildFooterContent() {
   tourismImg.src = LOGO_TOURISM;
   tourismImg.alt = 'Tourism and Events Queensland';
   tourismImg.loading = 'lazy';
+  tourismImg.width = 96;
+  tourismImg.height = 37;
   logosRow.append(tourismImg);
 
   const separator = document.createElement('span');
@@ -169,6 +171,8 @@ function buildFooterContent() {
   govImg.src = LOGO_QLD_GOV;
   govImg.alt = 'Queensland Government';
   govImg.loading = 'lazy';
+  govImg.width = 96;
+  govImg.height = 37;
   logosRow.append(govImg);
 
   logosDiv.append(logosRow);

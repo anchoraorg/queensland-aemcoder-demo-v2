@@ -169,6 +169,15 @@ export default async function decorate(block) {
     moveInstrumentation(row, slide);
     slidesWrapper.append(slide);
 
+    // Mark first slide's image as high priority for LCP
+    if (idx === 0) {
+      const img = slide.querySelector('img');
+      if (img) {
+        img.setAttribute('fetchpriority', 'high');
+        img.setAttribute('loading', 'eager');
+      }
+    }
+
     if (slideIndicators) {
       const indicator = document.createElement('li');
       indicator.classList.add('carousel-hero-slide-indicator');

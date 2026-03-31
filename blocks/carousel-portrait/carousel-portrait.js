@@ -362,6 +362,13 @@ function createSlide(row, slideIndex, carouselId) {
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
+
+    // Set aria-label on empty card links for accessibility
+    slide.querySelectorAll('a').forEach((link) => {
+      if (!link.textContent.trim() && !link.getAttribute('aria-label')) {
+        link.setAttribute('aria-label', labeledBy.textContent.trim());
+      }
+    });
   }
 
   return slide;
