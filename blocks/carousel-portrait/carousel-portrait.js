@@ -247,12 +247,18 @@ function bindEvents(block) {
 
   if (prevBtn && slidesEl) {
     prevBtn.addEventListener('click', () => {
-      slidesEl.scrollBy({ left: -300, behavior: 'smooth' });
+      const slide = block.querySelector('.carousel-portrait-slide');
+      const gap = parseFloat(getComputedStyle(slidesEl).gap) || 0;
+      const scrollAmount = slide ? 4 * (slide.offsetWidth + gap) : 1200;
+      slidesEl.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
   }
   if (nextBtn && slidesEl) {
     nextBtn.addEventListener('click', () => {
-      slidesEl.scrollBy({ left: 300, behavior: 'smooth' });
+      const slide = block.querySelector('.carousel-portrait-slide');
+      const gap = parseFloat(getComputedStyle(slidesEl).gap) || 0;
+      const scrollAmount = slide ? 4 * (slide.offsetWidth + gap) : 1200;
+      slidesEl.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
   }
 
