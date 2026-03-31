@@ -87,7 +87,7 @@ function injectArticleContent(block) {
     h3.textContent = article.title;
     body.prepend(h3);
 
-    link.setAttribute('aria-label', article.title);
+    link.setAttribute('aria-label', `Learn more about ${article.title}`);
   });
 }
 
@@ -133,10 +133,11 @@ export default function decorate(block) {
       const a = document.createElement('a');
       a.href = link.href;
       a.className = 'cards-masonry-card-link';
-      a.setAttribute(
-        'aria-label',
-        li.querySelector('h3')?.textContent || '',
-      );
+      const heading = li.querySelector('h3');
+      const linkText = link.textContent.trim();
+      if (heading) {
+        a.setAttribute('aria-label', linkText ? `${linkText} about ${heading.textContent}` : heading.textContent);
+      }
       while (li.firstChild) a.append(li.firstChild);
       li.append(a);
     }

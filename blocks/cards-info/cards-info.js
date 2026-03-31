@@ -87,6 +87,15 @@ export default function decorate(block) {
       }
     });
 
+    // Fix heading order: convert h6 to h3 for sequential descending order
+    li.querySelectorAll('h6').forEach((h6) => {
+      const h3 = document.createElement('h3');
+      h3.id = h6.id;
+      h3.className = h6.className;
+      h3.innerHTML = h6.innerHTML;
+      h6.replaceWith(h3);
+    });
+
     // Restructure temperature display in body divs
     const body = li.querySelector('.cards-info-card-body');
     if (body) {

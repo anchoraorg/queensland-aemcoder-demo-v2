@@ -49,7 +49,7 @@
   flex: 1;
 }
 
-.cards-info .cards-info-card-body h6 {
+.cards-info .cards-info-card-body h3 {
   color: var(--heading-color, #00817d);
   font-size: 24px;
   text-transform: uppercase;
@@ -68,7 +68,7 @@
   line-height: 1.4;
 }
 
-/* First paragraph after h6 = main description (bold) */
+/* First paragraph after h3 = main description (bold) */
 .cards-info .cards-info-card-body p:first-of-type {
   margin: 0 0 2px;
   font-weight: 700;

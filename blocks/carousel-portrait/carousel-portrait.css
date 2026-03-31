@@ -199,7 +199,7 @@ main .section.dark.carousel-portrait-container p {
 }
 
 /* Heading */
-.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content h5,
+.carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content h3,
 .carousel-portrait .carousel-portrait-slide .carousel-portrait-slide-content h1 {
   font-size: 24px;
   font-weight: 700;

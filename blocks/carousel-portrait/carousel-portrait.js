@@ -359,6 +359,15 @@ function createSlide(row, slideIndex, carouselId) {
     slide.append(column);
   });
 
+  // Fix heading order: convert h5/h6 to h3 for sequential descending order
+  slide.querySelectorAll('h5, h6').forEach((h) => {
+    const h3 = document.createElement('h3');
+    h3.id = h.id;
+    h3.className = h.className;
+    h3.innerHTML = h.innerHTML;
+    h.replaceWith(h3);
+  });
+
   const labeledBy = slide.querySelector('h1, h2, h3, h4, h5, h6');
   if (labeledBy) {
     slide.setAttribute('aria-labelledby', labeledBy.getAttribute('id'));
