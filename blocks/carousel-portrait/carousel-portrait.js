@@ -269,12 +269,25 @@ function bindEvents(block) {
 // Fallback images — maps card link URLs to Scene7 image URLs
 // Used when AEM content has empty image columns
 const FALLBACK_IMAGES = {
+  // "Be our plus one?" — events carousel
   'https://www.queensland.com/au/en/things-to-do/events/arts-and-culture/blueys-world-brisbane': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/blog-images/2023_BNE_BlueysWorld2.jpg?fit=crop&fmt=webp&hei=500&wid=270',
   'https://www.queensland.com/au/en/things-to-do/events/arts-and-culture': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/web-images/2021_BNE_QAGOMA_DLT_JesseSmith_Mobile.jpg?fit=crop&fmt=webp&hei=500&wid=270',
   'https://www.queensland.com/au/en/things-to-do/events/endurance-events': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/events/2024_SC_Ironman_KV_IM703__0263.jpg?fit=crop&fmt=webp&hei=500&wid=270',
   'https://www.queensland.com/au/en/things-to-do/events/food-and-drink': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/tropical-north-queensland/web-images/2019_TNQ_NuNuRestaurant_FoodandBeverage_138678_mobile.jpg?fit=crop&fmt=webp&hei=500&wid=270',
   'https://www.queensland.com/au/en/things-to-do/events/music-and-festivals': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/sunshine-coast/web-images/2014_SSC_CaloundraMusicFestival_Festival_130867_desktop.jpg?fit=crop&fmt=webp&hei=500&wid=270',
   'https://www.queensland.com/au/en/things-to-do/events/sports-events': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/web-images/2020_BNE_BrisbaneInternational_SportEvents_141267_desktop.jpg?fit=crop&fmt=webp&hei=500&wid=270',
+  // "Explore our destinations" — destination carousel
+  'https://www.queensland.com/au/en/places-to-see/destinations/cairns-and-great-barrier-reef': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/tropical-north-queensland/web-images/2024_TNQ_Mossman_DaintreeRainfor-23.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/brisbane': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/brisbane/web-images/2022_BNE_KangarooPoint_149804.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/gold-coast': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/gold-coast/web-images/2022_GC_GoldCoastSkyline_150564.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/sunshine-coast': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/sunshine-coast/web-images/2022_SC_Noosa_Surfing1.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/southern-great-barrier-reef': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/bundaberg/blog-images/2022_BDB_LadyMusgraveExperience_MarkFitz_149305.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/the-whitsundays': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/the-whitsundays/blog-imges/2022_WYS_HeartReef_HamiltonIslandAir_149885-23.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/fraser-coast': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/fraser-coast/web-images/2023_FC_Kgri_Family_1549_Mobile.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/southern-queensland-country': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/southern-queensland-country/web-images/QC_2023_mountnormantrail.png?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/outback-queensland': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/outback-queensland/hero-banner/2020_OUT_dinosaurtrail_AdventureExperience.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/mackay': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/mackay/web-images/2024_MKY_Clermont_PeakRangeNatio-19.jpg?fit=crop&fmt=webp&hei=420&wid=270',
+  'https://www.queensland.com/au/en/places-to-see/destinations/townsville': 'https://s7ap1.scene7.com/is/image/destqueensland/teq/consumer/global/images/destinations/townsville/web-images/2024_TSV_GirringunNationalPark_W-23.jpg?fit=crop&fmt=webp&hei=420&wid=270',
 };
 
 function injectFallbackImages(block) {
