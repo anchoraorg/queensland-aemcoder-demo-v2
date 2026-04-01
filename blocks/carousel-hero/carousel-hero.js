@@ -110,20 +110,45 @@ function createSlide(row, slideIndex, carouselId) {
   return slide;
 }
 
-let autoplayInterval = null;
+const AUTOPLAY_DELAY = 3000; // ms between slides (matches original)
+const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * 14; // r=14 → ~87.96
 
-function stopAutoplay() {
-  if (autoplayInterval) {
-    clearInterval(autoplayInterval);
-    autoplayInterval = null;
+let autoplayTimer = null;
+let progressAnim = null;
+
+function stopAutoplay(block) {
+  if (autoplayTimer) {
+    clearTimeout(autoplayTimer);
+    autoplayTimer = null;
   }
+  if (progressAnim) {
+    cancelAnimationFrame(progressAnim);
+    progressAnim = null;
+  }
+  // Reset progress circle
+  const fg = block.querySelector('.carousel-hero-progress-fg');
+  if (fg) fg.style.strokeDashoffset = CIRCLE_CIRCUMFERENCE;
 }
 
 function startAutoplay(block) {
-  stopAutoplay();
-  autoplayInterval = setInterval(() => {
+  stopAutoplay(block);
+  const fg = block.querySelector('.carousel-hero-progress-fg');
+  const startTime = performance.now();
+
+  function animateProgress(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / AUTOPLAY_DELAY, 1);
+    if (fg) fg.style.strokeDashoffset = CIRCLE_CIRCUMFERENCE * (1 - progress);
+    if (progress < 1) {
+      progressAnim = requestAnimationFrame(animateProgress);
+    }
+  }
+  progressAnim = requestAnimationFrame(animateProgress);
+
+  autoplayTimer = setTimeout(() => {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
-  }, 6000);
+    startAutoplay(block);
+  }, AUTOPLAY_DELAY);
 }
 
 let carouselHeroId = 0;
@@ -196,19 +221,34 @@ export default async function decorate(block) {
     const actions = document.createElement('div');
     actions.classList.add('carousel-hero-actions');
 
+    // SVG play/pause button with progress circle (matches original site)
+    const pauseSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30">
+      <path class="carousel-hero-pause-icon" fill="#F2EFEF" d="M13 9c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V10c0-.6.4-1 1-1h1zm5 0c.6 0 1 .4 1 1v10c0 .6-.4 1-1 1h-1c-.6 0-1-.4-1-1V10c0-.6.4-1 1-1h1z"/>
+      <polygon class="carousel-hero-play-icon" fill="#F2EFEF" points="12,8 12,22 22,15" style="display:none"/>
+      <circle class="carousel-hero-progress-bg" cx="15" cy="15" r="14" fill="none" stroke="#F2EFEF" stroke-width="2" opacity=".2" transform="rotate(-90,15,15)"/>
+      <circle class="carousel-hero-progress-fg" cx="15" cy="15" r="14" fill="none" stroke="#F2EFEF" stroke-width="2" transform="rotate(-90,15,15)" style="stroke-dasharray:${CIRCLE_CIRCUMFERENCE};stroke-dashoffset:${CIRCLE_CIRCUMFERENCE}"/>
+    </svg>`;
+
     const playBtn = document.createElement('button');
     playBtn.classList.add('carousel-hero-play');
     playBtn.setAttribute('type', 'button');
     playBtn.setAttribute('aria-label', 'Pause slideshow');
+    playBtn.innerHTML = pauseSvg;
     playBtn.addEventListener('click', () => {
+      const pauseIcon = playBtn.querySelector('.carousel-hero-pause-icon');
+      const playIcon = playBtn.querySelector('.carousel-hero-play-icon');
       if (playBtn.classList.contains('paused')) {
         playBtn.classList.remove('paused');
         playBtn.setAttribute('aria-label', 'Pause slideshow');
+        pauseIcon.style.display = '';
+        playIcon.style.display = 'none';
         startAutoplay(block);
       } else {
         playBtn.classList.add('paused');
         playBtn.setAttribute('aria-label', 'Play slideshow');
-        stopAutoplay();
+        pauseIcon.style.display = 'none';
+        playIcon.style.display = '';
+        stopAutoplay(block);
       }
     });
 
