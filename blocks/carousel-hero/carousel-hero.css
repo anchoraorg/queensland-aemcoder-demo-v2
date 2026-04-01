@@ -263,13 +263,14 @@ main > .section.carousel-hero-container {
   border-radius: 0;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
+/* stylelint-disable no-descending-specificity */
 .carousel-hero .carousel-hero-discover h2,
 .carousel-hero .carousel-hero-discover p {
   max-width: 760px;
   margin-left: auto;
   margin-right: auto;
 }
+/* stylelint-enable no-descending-specificity */
 
 .carousel-hero .carousel-hero-discover h2 {
   color: #ffc54d;
