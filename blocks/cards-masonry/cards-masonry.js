@@ -31,6 +31,34 @@ const ARTICLE_CONTENT = {
     title: 'How to do Glass House Mountains National Park',
     category: 'HOW TO',
   },
+  'https://www.queensland.com/au/en/places-to-see/experiences/great-barrier-reef/best-great-barrier-reef-experiences': {
+    title: '8 epic Great Barrier Reef experiences',
+    category: 'LIST',
+  },
+  'https://www.queensland.com/au/en/places-to-see/experiences/islands/queensland-islands-youve-never-heard-of': {
+    title: "Must-visit Queensland islands you've never heard of",
+    category: 'GUIDE',
+  },
+  'https://www.queensland.com/au/en/places-to-see/experiences/nature-and-wildlife/visit-the-daintree-rainforest': {
+    title: '12 undeniable reasons to visit the Daintree Rainforest',
+    category: 'LIST',
+  },
+  'https://www.queensland.com/au/en/places-to-see/destinations/outback-queensland/plan-your-trip-outback-queensland': {
+    title: 'Plan your trip to Outback Queensland',
+    category: 'GUIDE',
+  },
+  'https://www.queensland.com/au/en/places-to-see/experiences/beaches/5-incredible-ways-to-experience-australias-best-beach': {
+    title: "5 incredible ways to experience Australia's best beach",
+    category: 'EXCLUDE',
+  },
+  'https://www.queensland.com/au/en/places-to-see/destinations/brisbane/why-visit-brisbane': {
+    title: 'Why you should visit Brisbane',
+    category: 'LIST',
+  },
+  'https://www.queensland.com/au/en/places-to-see/experiences/country-and-outback/best-farm-stays-in-queensland': {
+    title: 'The Best Farm Stays and Experiences in Queensland',
+    category: 'GUIDE',
+  },
 };
 
 const CTA_MAP = {
@@ -38,6 +66,14 @@ const CTA_MAP = {
     text: 'explore articles',
     href: 'https://www.queensland.com/au/en/plan-your-holiday/news-and-articles',
   },
+  'every place has a story': {
+    text: 'explore articles',
+    href: 'https://www.queensland.com/au/en/plan-your-holiday/news-and-articles',
+  },
+};
+
+const SECTION_HEADINGS = {
+  'places-to-see': 'Every place has a story',
 };
 
 /* eslint-disable max-len */
@@ -159,4 +195,21 @@ export default function decorate(block) {
 
   injectArticleContent(block);
   addCtaButton(block);
+
+  // Inject section heading if missing
+  const wrapper = block.closest('.cards-masonry-wrapper');
+  if (wrapper) {
+    const prevEl = wrapper.previousElementSibling;
+    const hasHeading = prevEl && prevEl.querySelector('h2');
+    if (!hasHeading) {
+      const path = window.location.pathname.replace(/\/$/, '').split('/').pop();
+      const headingText = SECTION_HEADINGS[path];
+      if (headingText) {
+        const h2 = document.createElement('h2');
+        h2.className = 'cards-masonry-heading';
+        h2.textContent = headingText;
+        wrapper.prepend(h2);
+      }
+    }
+  }
 }

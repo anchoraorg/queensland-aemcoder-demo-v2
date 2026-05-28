@@ -1,5 +1,22 @@
 /* Cards Masonry — Queensland-styled masonry grid */
 
+/* Background for masonry section */
+.cards-masonry-container {
+  background-color: rgb(229 233 235);
+}
+
+/* Injected heading inside wrapper */
+.cards-masonry-wrapper .cards-masonry-heading {
+  color: rgb(51 63 72);
+  font-size: 48px;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  text-align: center;
+  margin: 40px 0 20px;
+}
+
 /* Orange heading preceding the masonry grid (default) */
 .default-content-wrapper:has(+ .cards-masonry-wrapper) h2 {
   color: rgb(255 165 0);
