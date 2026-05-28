@@ -9,4 +9,16 @@ export default function decorate(block) {
     const imageCol = block.querySelector(':scope > div > div:first-child');
     if (imageCol) imageCol.appendChild(h1);
   }
+
+  // Add "Explore Queensland" heading before the next carousel-portrait
+  const section = block.closest('.section');
+  if (section) {
+    const carousel = section.querySelector('.carousel-portrait-wrapper');
+    if (carousel) {
+      const heading = document.createElement('h2');
+      heading.id = 'explore-queensland';
+      heading.textContent = 'Explore Queensland';
+      carousel.prepend(heading);
+    }
+  }
 }
