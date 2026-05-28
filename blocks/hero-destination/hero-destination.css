@@ -29,8 +29,12 @@
 
 .hero-destination > div > div:last-child {
   position: relative;
-  margin-top: -80px;
-  z-index: 1;
+  max-width: 750px;
+  margin: -75px auto 0;
+  padding: 75px 15px 20px;
+  background: #fff;
+  text-align: center;
+  z-index: 10;
 }
 
 .hero-destination h1 {
@@ -42,41 +46,48 @@
   width: 100%;
   padding: 0 24px;
   box-sizing: border-box;
-  font-size: 2.5rem;
-  line-height: 1.1;
   margin: 0;
   z-index: 2;
 }
 
 .hero-destination h1 .hero-title-line1 {
   display: block;
-  color: #e87c03;
-  font-style: italic;
+  font-family: montserrat, "Montserrat Fallback", Arial, sans-serif;
+  font-size: 24px;
   font-weight: 700;
-  font-size: 0.75em;
+  font-style: normal;
+  color: #ffa500;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 2.4px;
+  line-height: 1.1;
 }
 
 .hero-destination h1 .hero-title-line2 {
   display: block;
-  color: #fff;
-  font-weight: 800;
-  font-size: 1em;
+  font-family: trade-gothic-next-compressed, "Trade Gothic Fallback", "Arial Narrow", sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  font-style: normal;
+  color: #ffa500;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  letter-spacing: 5.6px;
+  line-height: 1;
 }
 
-.hero-destination p {
-  background: #fff;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 48px 64px;
+.hero-destination > div > div:last-child p {
+  font-family: montserrat, "Montserrat Fallback", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: #333f48;
+  line-height: 27px;
   text-align: center;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: #4a4a4a;
-  box-shadow: 0 2px 16px rgb(0 0 0 / 8%);
+  margin: 0;
+}
+
+/* Grey background for Explore Queensland section following hero */
+.hero-destination-container + .section {
+  background-color: #f5f5f5;
+  padding: 40px 0 60px;
 }
 
 @media (width >= 900px) {
@@ -85,12 +96,15 @@
   }
 
   .hero-destination h1 {
-    font-size: 4rem;
     bottom: 140px;
   }
 
-  .hero-destination > div > div:last-child {
-    margin-top: -100px;
+  .hero-destination h1 .hero-title-line1 {
+    font-size: 36px;
+  }
+
+  .hero-destination h1 .hero-title-line2 {
+    font-size: 81px;
   }
 }
 
@@ -100,7 +114,6 @@
   }
 
   .hero-destination h1 {
-    font-size: 5rem;
     bottom: 160px;
   }
 }
