@@ -86,20 +86,16 @@
   margin: 0;
 }
 
-/* Grey background for section containing hero + carousel */
-.hero-destination-container {
-  background-color: #f5f5f5;
-}
-
 /* Explore Queensland heading injected by JS */
 .hero-destination-container .explore-heading {
-  color: #ffa500;
+  color: rgb(51 63 72);
   font-size: 48px;
   font-weight: 600;
   font-family: trade-gothic-next-compressed, "Trade Gothic Fallback", "Arial Narrow", sans-serif;
   text-transform: uppercase;
   letter-spacing: 1.6px;
   text-align: center;
+  line-height: 48px;
   margin: 40px 0 20px;
 }
 
