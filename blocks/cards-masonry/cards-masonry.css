@@ -1,16 +1,16 @@
 /* Cards Masonry — Queensland-styled masonry grid */
 
-/* Background for masonry section — only the wrapper, not the whole container */
+/* Background for masonry section — grey above heading, around grid, and below */
 .cards-masonry-wrapper {
   background-color: rgb(229 233 235);
-  padding: 40px 32px 60px;
+  padding: 60px 32px 80px;
   margin: 0 -32px;
 }
 
 /* Grey bg for the carousel section following masonry */
 .cards-masonry-container ~ .carousel-portrait-container {
   background-color: rgb(229 233 235);
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 /* Injected heading inside wrapper */
@@ -22,7 +22,7 @@
   text-transform: uppercase;
   letter-spacing: 1.6px;
   text-align: center;
-  margin: 40px 0 20px;
+  margin: 0 0 40px;
 }
 
 /* Orange heading preceding the masonry grid (default) */
