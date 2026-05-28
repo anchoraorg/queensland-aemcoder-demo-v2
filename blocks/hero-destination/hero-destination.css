@@ -140,6 +140,13 @@
   text-decoration: none;
 }
 
+.hero-destination-container ~ .section > .default-content-wrapper p:last-of-type {
+  font-weight: 600;
+  color: rgb(0 129 125);
+  cursor: pointer;
+  margin-top: 24px;
+}
+
 @media (width >= 900px) {
   .hero-destination > div > div:first-child {
     min-height: 500px;
