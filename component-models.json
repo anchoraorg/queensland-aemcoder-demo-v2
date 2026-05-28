@@ -415,6 +415,32 @@
     ]
   },
   {
+    "id": "hero-destination-item",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "media_image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "media_imageAlt",
+        "label": "Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "content_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "hero-newsletter-item",
     "fields": [
       {

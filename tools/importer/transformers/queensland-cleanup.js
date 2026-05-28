@@ -35,6 +35,14 @@ export default function transform(hookName, element, payload) {
       'noscript',
       'script',
     ]);
+    // Remove tracking pixels (Yahoo, analytics beacons)
+    element.querySelectorAll('img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (src.includes('sp.analytics.yahoo.com') || src.includes('pixel') || img.alt === 'dot image pixel') {
+        const parent = img.closest('picture') || img.closest('p') || img;
+        if (parent.parentNode) parent.parentNode.removeChild(parent);
+      }
+    });
     // Clean tracking attributes
     element.querySelectorAll('*').forEach((el) => {
       el.removeAttribute('data-track');

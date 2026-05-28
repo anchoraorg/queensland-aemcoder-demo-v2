@@ -104,6 +104,12 @@
     ]
   },
   {
+    "id": "hero-destination",
+    "components": [
+      "hero-destination-item"
+    ]
+  },
+  {
     "id": "hero-newsletter",
     "components": [
       "hero-newsletter-item"

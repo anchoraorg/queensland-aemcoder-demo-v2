@@ -1,0 +1,41 @@
+{
+  "variantName": "hero-destination",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-05-27T23:48:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.queensland.com/au/en/places-to-see",
+    "originPage": "Places to See category landing page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "destination-landing-hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "background-image + heading + paragraph",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "category landing pages",
+      "destination overview pages",
+      "content hub hero sections",
+      "pages with scenic background and text overlay"
+    ],
+    "notSuitableFor": [
+      "newsletter signup sections",
+      "hero sections with CTA buttons",
+      "product pages",
+      "carousel-style hero banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/au/en/places-to-see"],
+    "reuseCount": 1,
+    "lastUsed": "2026-05-27T23:48:00.000Z"
+  }
+}
