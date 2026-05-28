@@ -10,15 +10,12 @@ export default function decorate(block) {
     if (imageCol) imageCol.appendChild(h1);
   }
 
-  // Add "Explore Queensland" heading before the next carousel-portrait
-  const section = block.closest('.section');
-  if (section) {
-    const carousel = section.querySelector('.carousel-portrait-wrapper');
-    if (carousel) {
-      const heading = document.createElement('h2');
-      heading.id = 'explore-queensland';
-      heading.textContent = 'Explore Queensland';
-      carousel.prepend(heading);
-    }
+  // Add "Explore Queensland" heading before the next carousel block
+  const wrapper = block.closest('.hero-destination-wrapper');
+  if (wrapper && wrapper.nextElementSibling) {
+    const heading = document.createElement('h2');
+    heading.className = 'explore-heading';
+    heading.textContent = 'Explore Queensland';
+    wrapper.parentElement.insertBefore(heading, wrapper.nextElementSibling);
   }
 }

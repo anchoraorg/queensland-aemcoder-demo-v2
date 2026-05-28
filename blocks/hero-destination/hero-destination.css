@@ -86,16 +86,13 @@
   margin: 0;
 }
 
-/* Grey background for carousel following hero — full bleed */
+/* Grey background for section containing hero + carousel */
 .hero-destination-container {
   background-color: #f5f5f5;
 }
 
-.hero-destination-wrapper ~ .carousel-portrait-wrapper {
-  padding: 40px 0 20px;
-}
-
-.hero-destination-wrapper ~ .carousel-portrait-wrapper h2 {
+/* Explore Queensland heading injected by JS */
+.hero-destination-container .explore-heading {
   color: #ffa500;
   font-size: 48px;
   font-weight: 600;
@@ -103,7 +100,7 @@
   text-transform: uppercase;
   letter-spacing: 1.6px;
   text-align: center;
-  margin: 0 0 20px;
+  margin: 40px 0 20px;
 }
 
 @media (width >= 900px) {
