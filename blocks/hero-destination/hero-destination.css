@@ -86,6 +86,11 @@
   margin: 0;
 }
 
+/* Background for Explore Queensland section */
+.hero-destination-container {
+  background-color: rgb(229 233 235);
+}
+
 /* Explore Queensland heading injected by JS */
 .hero-destination-container .explore-heading {
   color: rgb(51 63 72);
