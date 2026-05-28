@@ -5,33 +5,102 @@
 
 .hero-destination {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
+  margin-bottom: 0;
+}
+
+.hero-destination > div {
+  display: block;
+  position: relative;
+}
+
+.hero-destination > div > div:first-child {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.hero-destination > div > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.hero-destination > div > div:last-child {
+  position: relative;
+  margin-top: -80px;
+  z-index: 1;
 }
 
 .hero-destination h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero-destination picture {
   position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
-  box-sizing: border-box;
-}
-
-.hero-destination img {
-  object-fit: cover;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
   width: 100%;
-  height: 100%;
+  padding: 0 24px;
+  box-sizing: border-box;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin: 0;
+  z-index: 2;
 }
 
-@media (width >= 900px) {
-  .hero-destination {
-    padding: 40px 32px;
+.hero-destination h1 .hero-title-line1 {
+  display: block;
+  color: #e87c03;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.hero-destination h1 .hero-title-line2 {
+  display: block;
+  color: #fff;
+  font-weight: 800;
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.hero-destination p {
+  background: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 64px;
+  text-align: center;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4a4a4a;
+  box-shadow: 0 2px 16px rgb(0 0 0 / 8%);
+}
+
+@media (min-width: 900px) {
+  .hero-destination > div > div:first-child {
+    min-height: 500px;
+  }
+
+  .hero-destination h1 {
+    font-size: 4rem;
+    bottom: 140px;
+  }
+
+  .hero-destination > div > div:last-child {
+    margin-top: -100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-destination > div > div:first-child {
+    min-height: 560px;
+  }
+
+  .hero-destination h1 {
+    font-size: 5rem;
+    bottom: 160px;
   }
 }
