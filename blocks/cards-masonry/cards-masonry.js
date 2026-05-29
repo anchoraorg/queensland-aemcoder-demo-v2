@@ -196,20 +196,16 @@ export default function decorate(block) {
   injectArticleContent(block);
   addCtaButton(block);
 
-  // Inject section heading if missing
+  // Inject section heading
   const wrapper = block.closest('.cards-masonry-wrapper');
-  if (wrapper) {
-    const prevEl = wrapper.previousElementSibling;
-    const hasHeading = prevEl && prevEl.querySelector('h2');
-    if (!hasHeading) {
-      const path = window.location.pathname.replace(/\/$/, '').split('/').pop();
-      const headingText = SECTION_HEADINGS[path];
-      if (headingText) {
-        const h2 = document.createElement('h2');
-        h2.className = 'cards-masonry-heading';
-        h2.textContent = headingText;
-        wrapper.prepend(h2);
-      }
+  if (wrapper && !wrapper.querySelector('.cards-masonry-heading')) {
+    const path = window.location.pathname.replace(/\/$/, '').split('/').pop();
+    const headingText = SECTION_HEADINGS[path];
+    if (headingText) {
+      const h2 = document.createElement('h2');
+      h2.className = 'cards-masonry-heading';
+      h2.textContent = headingText;
+      wrapper.prepend(h2);
     }
   }
 }
