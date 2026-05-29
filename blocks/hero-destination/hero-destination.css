@@ -55,26 +55,29 @@
 .hero-destination h1 .hero-title-line1 {
   display: block;
   font-family: montserrat, "Montserrat Fallback", Arial, sans-serif;
-  font-size: 36px;
-  font-weight: 400;
+  font-size: 2.25rem;
+  font-weight: 600;
   font-style: normal;
-  color: #ffa500;
+  color: orange;
   text-transform: uppercase;
-  letter-spacing: 2.4px;
-  line-height: 39.6px;
-  margin-bottom: 5px;
+  letter-spacing: 0.35rem;
+  line-height: 1;
+  margin: 0;
+  text-shadow: rgb(58 47 47 / 60%) 0 2px 20px;
 }
 
 .hero-destination h1 .hero-title-line2 {
   display: block;
   font-family: trade-gothic-next-compressed, "Trade Gothic Fallback", "Arial Narrow", sans-serif;
-  font-size: 81px;
+  font-size: 5.063rem;
   font-weight: 700;
   font-style: normal;
-  color: #ffa500;
+  color: orange;
   text-transform: uppercase;
-  letter-spacing: 5.6px;
-  line-height: 81px;
+  letter-spacing: 0.35rem;
+  line-height: 1;
+  margin: 10px 0 0;
+  text-shadow: rgb(58 47 47 / 60%) 0 2px 20px;
 }
 
 .hero-destination .hero-heart {
@@ -183,14 +186,12 @@
   }
 }
 
-@media (width < 600px) {
+@media (width < 768px) {
   .hero-destination h1 .hero-title-line1 {
-    font-size: 24px;
-    line-height: 26px;
+    font-size: 1.5rem;
   }
 
   .hero-destination h1 .hero-title-line2 {
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 2.25rem;
   }
 }
