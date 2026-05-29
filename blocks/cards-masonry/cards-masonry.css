@@ -11,6 +11,8 @@
 .cards-masonry-wrapper + .carousel-portrait-wrapper {
   margin-top: 60px;
   padding-top: 40px;
+  padding-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 /* Injected heading inside wrapper */
