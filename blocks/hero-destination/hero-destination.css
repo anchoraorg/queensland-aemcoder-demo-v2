@@ -57,12 +57,12 @@
   font-family: montserrat, "Montserrat Fallback", Arial, sans-serif;
   font-size: 36px;
   font-weight: 700;
-  font-style: normal;
+  font-style: italic;
   color: #ffa500;
   text-transform: uppercase;
   letter-spacing: 2.4px;
   line-height: 39.6px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .hero-destination h1 .hero-title-line2 {
@@ -75,6 +75,29 @@
   text-transform: uppercase;
   letter-spacing: 5.6px;
   line-height: 81px;
+}
+
+.hero-destination .hero-heart {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.hero-destination .hero-heart svg {
+  width: 28px;
+  height: 28px;
+}
+
+.hero-destination .hero-heart svg path {
+  fill: none;
+  stroke: rgb(0 165 164);
+  stroke-width: 1.5;
+  transition: fill 0.2s;
+}
+
+.hero-destination .hero-heart.active svg path {
+  fill: rgb(0 165 164);
 }
 
 .hero-destination > div > div:last-child p {
