@@ -10,17 +10,7 @@
 /* Space between masonry and next carousel in same section */
 .cards-masonry-wrapper + .carousel-portrait-wrapper {
   margin-top: 60px;
-  background-color: rgb(229 233 235);
-  padding: 40px 32px 80px;
-  margin-left: -32px;
-  margin-right: -32px;
-}
-
-/* If they're in separate sections */
-.cards-masonry-container ~ .carousel-portrait-container {
-  background-color: rgb(229 233 235);
-  padding-top: 60px;
-  padding-bottom: 80px;
+  padding-top: 40px;
 }
 
 /* Injected heading inside wrapper */

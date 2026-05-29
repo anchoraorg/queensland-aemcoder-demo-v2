@@ -469,4 +469,17 @@ export default async function decorate(block) {
   }
 
   addCtaButton(block);
+
+  // Inject "Choose your experience" heading for second carousel on places-to-see
+  const wrapper = block.closest('.carousel-portrait-wrapper');
+  if (wrapper) {
+    const prevSibling = wrapper.previousElementSibling;
+    const isAfterMasonry = prevSibling && prevSibling.classList.contains('cards-masonry-wrapper');
+    if (isAfterMasonry && !wrapper.querySelector('.choose-experience-heading')) {
+      const h2 = document.createElement('h2');
+      h2.className = 'choose-experience-heading';
+      h2.textContent = 'Choose your experience';
+      wrapper.prepend(h2);
+    }
+  }
 }
