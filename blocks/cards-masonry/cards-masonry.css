@@ -4,13 +4,15 @@
 .cards-masonry-wrapper {
   background-color: rgb(229 233 235);
   padding: 60px 32px 80px;
-  margin: 0 -32px;
+  margin: 0 -32px 60px;
 }
 
-/* Grey bg for the carousel section following masonry */
+/* Space between masonry and next carousel section */
 .cards-masonry-container ~ .carousel-portrait-container {
   background-color: rgb(229 233 235);
+  padding-top: 60px;
   padding-bottom: 80px;
+  margin-top: 60px;
 }
 
 /* Injected heading inside wrapper */
