@@ -56,13 +56,11 @@
   display: block;
   font-family: montserrat, "Montserrat Fallback", Arial, sans-serif;
   font-size: 2.25rem;
-  font-weight: 600;
-  font-style: normal;
+  font-weight: 700;
   color: orange;
   text-transform: uppercase;
-  letter-spacing: 0.35rem;
-  line-height: 1;
-  margin: 0;
+  letter-spacing: 0.15rem;
+  line-height: 1.1;
   text-shadow: rgb(58 47 47 / 60%) 0 2px 20px;
 }
 
@@ -71,12 +69,11 @@
   font-family: trade-gothic-next-compressed, "Trade Gothic Fallback", "Arial Narrow", sans-serif;
   font-size: 5.063rem;
   font-weight: 700;
-  font-style: normal;
   color: orange;
   text-transform: uppercase;
   letter-spacing: 0.35rem;
   line-height: 1;
-  margin: 10px 0 0;
+  margin: 0;
   text-shadow: rgb(58 47 47 / 60%) 0 2px 20px;
 }
 
