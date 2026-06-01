@@ -78,15 +78,15 @@
 }
 
 .hero-destination .hero-heart {
-  display: block;
-  text-align: center;
-  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
   cursor: pointer;
 }
 
 .hero-destination .hero-heart svg {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 22px;
 }
 
 .hero-destination .hero-heart svg path {
